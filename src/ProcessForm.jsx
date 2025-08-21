@@ -16,16 +16,20 @@ import { Input } from "@/components/ui/input"
 import { Button } from '@/components/ui/button'
 
 const FormSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+  pid: z.string().min(2, {
+    message: "pid must be at least 2 characters.",
   }),
 })
 
 const ProcessForm = () => {
+  const handleAddProcess = () => {
+
+  }
+
   const form = useForm({
-    resolver: zodResolver(FormSchema),
+    // resolver: zodResolver(FormSchema),
     defaultValues: {
-      username: "",
+      pid: "",
     },
   })
 
@@ -43,23 +47,47 @@ const ProcessForm = () => {
     <div className='w-[35%] border border-black border-solid flex flex-col items-center justify-center'>
       <h2 className='font-bold text-2xl underline p-2'>Process Form</h2>
       <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-2">
         <FormField
           control={form.control}
-          name="username"
+          name="pid"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
+            <FormItem className="flex items-center gap-4">
+              <FormLabel>Process ID</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="P1" {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
+        <FormField
+          control={form.control}
+          name="at"
+          render={({ field }) => (
+            <FormItem className="flex items-center gap-4">
+              <FormLabel>Arrival Time</FormLabel>
+              <FormControl>
+                <Input placeholder="0" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="bt"
+          render={({ field }) => (
+            <FormItem className="flex items-center gap-4">
+              <FormLabel>Burst Time</FormLabel>
+              <FormControl>
+                <Input placeholder="5" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type = "button" onClick={handleAddProcess}>Add</Button>
         <Button type="submit">Submit</Button>
       </form>
     </Form>
