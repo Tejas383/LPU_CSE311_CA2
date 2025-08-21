@@ -44,8 +44,8 @@ const ProcessForm = () => {
   }
 
   return (
-    <div className='w-[35%] border border-black border-solid flex flex-col items-center justify-center'>
-      <h2 className='font-bold text-2xl underline p-2'>Process Form</h2>
+    <div className='w-[35%] border border-black border-solid flex flex-col items-center justify-center bg-red-500/50 '>
+      <h2 className='font-bold text-2xl underline p-2'>Processes</h2>
       <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-2">
         <FormField
@@ -88,7 +88,7 @@ const ProcessForm = () => {
           )}
         />
         <Button type = "button" onClick={handleAddProcess}>Add</Button>
-        <Button type="submit">Submit</Button>
+        <Button type="submit" variant="desctructive">Submit</Button>
       </form>
     </Form>
     </div>

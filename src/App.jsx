@@ -10,9 +10,9 @@ function App() {
   return (
     <div className="App">
       <h1 className='text-6xl font-bold p-8'>CPU SCHEDULING SIMULATOR</h1>
-      <div className='bg-red-500/50 flex '>
+      <div className=' flex gap-2 '>
         <ProcessForm  />
-        <div className='flex flex-col items-center justify-center flex-1 '>
+        <div className='flex flex-col items-center justify-center flex-1 gap-1'>
           <AlgorithmSelector  />
           <hr className='border border-black w-full' />
           <Results />
