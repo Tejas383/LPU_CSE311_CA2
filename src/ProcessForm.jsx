@@ -38,7 +38,7 @@ const ProcessForm = ({process, setProcess}) => {
 
 
   return (
-    <div className=' flex flex-col items-center justify-center bg-red-500/50 '>
+    <div className=' flex flex-col items-center justify-center bg-red-500/50 p-5 '>
       <h2 className='font-bold text-2xl underline p-2'>Processes</h2>
       <Form {...form}>
       <form className="w-2/3 space-y-2">
