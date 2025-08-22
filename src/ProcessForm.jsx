@@ -21,33 +21,27 @@ const FormSchema = z.object({
   }),
 })
 
-const ProcessForm = () => {
-  const handleAddProcess = () => {
-
-  }
-
+const ProcessForm = ({process, setProcess}) => {
   const form = useForm({
-    // resolver: zodResolver(FormSchema),
     defaultValues: {
       pid: "",
+      at: "",
+      bt: "",
     },
   })
 
-  function onSubmit(data) {
-    toast("You submitted the following values", {
-      description: (
-        <pre className="mt-2 w-[320px] rounded-md bg-neutral-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    })
+  const handleAddProcess = () => {
+    const values = form.getValues();
+    setProcess([...process, values]);
+    form.reset();
   }
 
+
   return (
-    <div className='w-[35%] border border-black border-solid flex flex-col items-center justify-center bg-red-500/50 '>
+    <div className=' flex flex-col items-center justify-center bg-red-500/50 '>
       <h2 className='font-bold text-2xl underline p-2'>Processes</h2>
       <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-2">
+      <form className="w-2/3 space-y-2">
         <FormField
           control={form.control}
           name="pid"
@@ -87,8 +81,7 @@ const ProcessForm = () => {
             </FormItem>
           )}
         />
-        <Button type = "button" onClick={handleAddProcess}>Add</Button>
-        <Button type="submit" variant="desctructive">Submit</Button>
+        <Button type="button" onClick={handleAddProcess}>Add</Button>
       </form>
     </Form>
     </div>
