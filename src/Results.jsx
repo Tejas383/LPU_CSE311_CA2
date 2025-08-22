@@ -19,6 +19,10 @@ const Results = ({process, setProcess}) => {
             <TableHead className='border border-white text-center'>Process ID</TableHead>
             <TableHead className='border border-white text-center'>Arrival Time</TableHead>
             <TableHead className='border border-white text-center'>Burst Time</TableHead>
+            <TableHead className='border border-white text-center'>Completion Time</TableHead>
+            <TableHead className='border border-white text-center'>Turn Around Time</TableHead>
+            <TableHead className='border border-white text-center'>Waiting Time</TableHead>
+            <TableHead className='border border-white text-center'>Response Time</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

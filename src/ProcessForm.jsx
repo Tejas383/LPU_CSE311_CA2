@@ -27,11 +27,16 @@ const ProcessForm = ({process, setProcess}) => {
       pid: "",
       at: "",
       bt: "",
+      ct: "",
+      tat: "",
+      wt: "",
+      rt: "",
     },
   })
 
   const handleAddProcess = () => {
     const values = form.getValues();
+
     setProcess([...process, values]);
     form.reset();
   }
