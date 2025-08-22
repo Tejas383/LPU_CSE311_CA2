@@ -7,6 +7,7 @@ import ProcessTable from './ProcessTable';
 
 function App() {
   const [process, setProcess] = useState([]);
+  const [algorithm, setAlgorithm] = useState(null);
 
   return (
     <div className="App">
@@ -15,12 +16,12 @@ function App() {
         <div className='w-[30%] flex flex-col gap-1'>
           <ProcessForm  process={process} setProcess={setProcess} />
           <hr className='border border-black w-full' />
-          <ProcessTable  process={process} />
+          <ProcessTable  process={process} setProcess={setProcess} />
         </div>
         <div className='flex flex-col items-center justify-center flex-1 gap-1'>
-          <AlgorithmSelector  />
+          <AlgorithmSelector algorithm={algorithm} setAlgorithm={setAlgorithm} />
           <hr className='border border-black w-full' />
-          <Results process={process} />
+          <Results process={process} setProcess={setProcess}/>
         </div>
       </div>
     </div>

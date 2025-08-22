@@ -18,6 +18,12 @@ import {
 const ProcessTable = ({ process, setProcess }) => {
   // console.log(process);
 
+  const handleDeleteEvent = (idx) => {
+    const updated = [...process];
+    updated.splice(idx, 1);
+    setProcess(updated);
+  }
+
   const [openRow, setOpenRow] = useState(null);
 
   return (
@@ -54,11 +60,8 @@ const ProcessTable = ({ process, setProcess }) => {
                 </TableRow>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuItem onClick={() => alert(`Delete ${p.pid}`)}>
+                <DropdownMenuItem onClick={() => handleDeleteEvent(idx)}>
                   Delete
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => alert(`Move ${p.pid}`)}>
-                  Move
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
