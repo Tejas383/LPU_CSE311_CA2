@@ -31,15 +31,25 @@ const ProcessForm = ({process, setProcess}) => {
       tat: "",
       wt: "",
       rt: "",
-    },
+    }
   })
 
   const handleAddProcess = () => {
     const values = form.getValues();
 
-    setProcess([...process, values]);
+    const newProcess = {
+      pid: values.pid,
+      at: Number(values.at),
+      bt: Number(values.bt),
+      ct: null,
+      tat: null,
+      wt: null,
+      rt: null,
+    };
+
+    setProcess([...process, newProcess]);
     form.reset();
-  }
+  };
 
 
   return (
