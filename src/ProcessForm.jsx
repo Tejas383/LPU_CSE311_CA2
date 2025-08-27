@@ -23,6 +23,7 @@ const FormSchema = z.object({
 
 const ProcessForm = ({process, setProcess}) => {
   const form = useForm({
+    resolver: zodResolver(FormSchema),
     defaultValues: {
       pid: "",
       at: "",
@@ -36,6 +37,11 @@ const ProcessForm = ({process, setProcess}) => {
 
   const handleAddProcess = () => {
     const values = form.getValues();
+
+    if (process.some(p => p.pid === values.pid)) {
+      alert(`process with pid ${values.pid} already exists`);
+      return;
+    }
 
     const newProcess = {
       pid: values.pid,
@@ -56,7 +62,7 @@ const ProcessForm = ({process, setProcess}) => {
     <div className=' flex flex-col items-center justify-center bg-red-500/50 p-5 '>
       <h2 className='font-bold text-2xl underline p-2'>Processes</h2>
       <Form {...form}>
-      <form className="w-2/3 space-y-2">
+      <form onSubmit={form.handleSubmit(handleAddProcess)} className="w-2/3 space-y-2">
         <FormField
           control={form.control}
           name="pid"
@@ -96,7 +102,7 @@ const ProcessForm = ({process, setProcess}) => {
             </FormItem>
           )}
         />
-        <Button type="button" onClick={handleAddProcess}>Add</Button>
+        <Button type="submit">Add</Button>
       </form>
     </Form>
     </div>

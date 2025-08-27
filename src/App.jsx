@@ -3,10 +3,12 @@ import './App.css'
 import AlgorithmSelector from './AlgorithmSelector';
 import Results from './Results';
 import Process from './Process';
+import { GanttChart } from 'lucide-react';
 
 function App() {
   const [process, setProcess] = useState([]);
   const [calculatedProcess, setCalculatedProcess] = useState([]);
+  const [ganttData, setGanttData] = useState([]);
   const [algorithm, setAlgorithm] = useState(null);
 
   return (
@@ -17,13 +19,21 @@ function App() {
           <Process 
             process={process} 
             setProcess={setProcess} 
-            setCalculatedProcess={setCalculatedProcess} 
+            setCalculatedProcess={setCalculatedProcess}
+            setGanttData={setGanttData}
+            algorithm={algorithm}
           />
         </div>
         <div className='flex flex-col items-center justify-center flex-1 gap-1'>
-          <AlgorithmSelector algorithm={algorithm} setAlgorithm={setAlgorithm} />
+          <AlgorithmSelector 
+            algorithm={algorithm}
+            setAlgorithm={setAlgorithm} 
+          />
           <hr className='border border-black w-full' />
-          <Results process={calculatedProcess} setProcess={setCalculatedProcess} />
+          <Results 
+            process={calculatedProcess} 
+            ganttData={ganttData} 
+          />
         </div>
       </div>
     </div>

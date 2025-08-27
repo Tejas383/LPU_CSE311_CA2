@@ -1,15 +1,19 @@
 import React from 'react'
 
-const GanttChart = ({process}) => {
+const GanttChart = ({gantt}) => {
   return (
     <div className=' flex flex-col items-center justify-center bg-red-500/50 w-full h-full '>
       <h2 className=' text-xl underline '>Gantt Chart</h2>
-      <div className='h-10 w-full bg-green-200 flex flex-row items-center justify-center m-3'>
-        {process && process.length > 0 ? (
-            process.map((p, idx) => (
+
+      <div className='h-10 w-full flex flex-row items-center justify-center m-3'>
+        {gantt && gantt.length > 0 ? (
+            gantt.map((p, idx) => (
             <div 
                 key={idx} 
-                className='flex-1 border border-black flex items-center justify-center'
+                className='flex flex-col items-center justify-center bg-green-200'
+                style={{
+                    width: `${(p.end - p.start) * 40}px`
+                }}
             >
                 {p.pid}
             </div>
