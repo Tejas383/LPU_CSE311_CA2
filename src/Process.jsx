@@ -23,6 +23,11 @@ const Process = ({
       setGanttData(gantt);
       setCalculatedProcess(result);
     }
+    if (algorithm == "sjf") {
+      const { gantt, result } = runSJF(process);
+      setGanttData(gantt);
+      setCalculatedProcess(result);
+    }
   };
   return (
     <div className="flex gap-1 flex-col bg-red-200">

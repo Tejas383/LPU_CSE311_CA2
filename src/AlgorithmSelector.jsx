@@ -11,9 +11,6 @@ import {
 
 
 const AlgorithmSelector = ({algorithm, setAlgorithm}) => {
-  const [position, setPosition] = React.useState("bottom")
-  // console.log(algorithm)
-
   return (
     <div className='flex flex-col items-center justify-center bg-red-500/50 w-full p-5'>
       <h2 className='font-bold text-2xl underline p-2'>Algorithm</h2>
@@ -26,7 +23,7 @@ const AlgorithmSelector = ({algorithm, setAlgorithm}) => {
           <SelectGroup>
             <SelectLabel>Algorithms</SelectLabel>
             <SelectItem value="fcfs">First Come First Serve</SelectItem>
-            {/* <SelectItem value="sjf">Shortest Job First</SelectItem> */}
+            <SelectItem value="sjf">Shortest Job First</SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>
