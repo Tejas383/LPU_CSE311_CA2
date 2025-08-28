@@ -30,7 +30,7 @@ export default function runFCFS(processes) {
             ct: completionTime,
             tat: turnAroundTime,
             wt: waitingTime,
-            // rt: waitingTime,
+            rt: waitingTime,
         });
 
         time = completionTime;
