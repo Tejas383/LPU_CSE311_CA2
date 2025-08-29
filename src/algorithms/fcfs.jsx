@@ -8,21 +8,23 @@ export default function runFCFS(processes) {
   let gantt = [];
   let result = [];
   let readyQueue = [];
-  
-  for (let p of sorted) {
-      if (time < p.at) time = p.at;
 
-      let queue = sorted
-        .filter(
-          (x) =>
-            x.at <= time && !result.find((r) => r.pid === x.pid) && x.pid !== p.pid
-        )
-        .map((x) => x.pid);
-    
-      readyQueue.push({
-        time: time,
-        queue: [...queue],
-      });
+  for (let p of sorted) {
+    if (time < p.at) time = p.at;
+
+    let queue = sorted
+      .filter(
+        (x) =>
+          x.at <= time &&
+          !result.find((r) => r.pid === x.pid) &&
+          x.pid !== p.pid
+      )
+      .map((x) => x.pid);
+
+    readyQueue.push({
+      time: time,
+      queue: [...queue],
+    });
 
     let startTime = time;
     let completionTime = startTime + p.bt;

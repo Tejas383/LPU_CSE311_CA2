@@ -22,6 +22,7 @@ function App() {
             setProcess={setProcess} 
             setCalculatedProcess={setCalculatedProcess}
             setGanttData={setGanttData}
+            setReadyQueue={setReadyQueue}
             algorithm={algorithm}
           />
         </div>
@@ -34,6 +35,7 @@ function App() {
           <Results 
             process={calculatedProcess} 
             ganttData={ganttData} 
+            readyQueue={readyQueue}
           />
         </div>
       </div>

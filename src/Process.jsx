@@ -2,13 +2,14 @@ import React from "react";
 import ProcessForm from "./ProcessForm";
 import ProcessTable from "./ProcessTable";
 import { Button } from "./components/ui/button";
-import runFCFS from "./algorithms/fcfs";
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
 } from "./components/ui/tooltip";
+import runFCFS from "./algorithms/fcfs";
+import runSJF from "./algorithms/sjf";
 
 const Process = ({
   process,
