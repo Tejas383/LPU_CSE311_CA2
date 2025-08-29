@@ -10,6 +10,7 @@ export default function runSJF(processes) {
 
     for (let p of sorted) {
         // logic for sjf
+        
     }
 
     return {gantt, result};

@@ -10,6 +10,7 @@ function App() {
   const [calculatedProcess, setCalculatedProcess] = useState([]);
   const [ganttData, setGanttData] = useState([]);
   const [algorithm, setAlgorithm] = useState(null);
+  const [readyQueue, setReadyQueue] = useState([]);
 
   return (
     <div className="App">

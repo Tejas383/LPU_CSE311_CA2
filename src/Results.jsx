@@ -1,8 +1,9 @@
 import React from 'react'
 import ResultsTable from './ResultsTable'
 import GanttChart from './GanttChart'
+import ReadyQueue from './readyQueue';
 
-const Results = ({process, ganttData}) => {
+const Results = ({process, ganttData, readyQueue}) => {
   const n = process.length;
   const averageTAT = n ? (process.reduce((sum, p) => sum + (p.tat ?? 0), 0) / n).toFixed(2) : 0;
   const averageWT = n ? (process.reduce((sum, p) => sum + (p.wt ?? 0), 0) / n).toFixed(2) : 0;
@@ -13,6 +14,7 @@ const Results = ({process, ganttData}) => {
       <h2 className='font-bold text-2xl underline p-2'>Results</h2>
       <ResultsTable process={process} />
       <GanttChart gantt={ganttData} />
+      <ReadyQueue readyQueue={readyQueue} />
 
       <div className="flex flex-col items-start w-full px-5 gap-1 ml-8">
         <div className='flex flex-row gap-2'>

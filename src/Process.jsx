@@ -22,11 +22,13 @@ const Process = ({
       const { gantt, result } = runFCFS(process);
       setGanttData(gantt);
       setCalculatedProcess(result);
+      setReadyQueue(readyQueue);
     }
     if (algorithm == "sjf") {
       const { gantt, result } = runSJF(process);
       setGanttData(gantt);
       setCalculatedProcess(result);
+      setReadyQueue(readyQueue);
     }
   };
   return (
