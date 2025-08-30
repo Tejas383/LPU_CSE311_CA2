@@ -12,16 +12,14 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 
 const ProcessTable = ({ process, setProcess }) => {
-  // console.log(process);
-
   const handleDeleteEvent = (idx) => {
     const updated = [...process];
     updated.splice(idx, 1);
     setProcess(updated);
-  }
+  };
 
   const [openRow, setOpenRow] = useState(null);
 
@@ -32,6 +30,9 @@ const ProcessTable = ({ process, setProcess }) => {
           <TableRow className="">
             <TableHead className="border border-white text-center">
               Process ID
+            </TableHead>
+            <TableHead className="border border-white text-center">
+              Priority
             </TableHead>
             <TableHead className="border border-white text-center">
               Arrival Time
@@ -54,6 +55,7 @@ const ProcessTable = ({ process, setProcess }) => {
                   onClick={() => setOpenRow(idx)}
                 >
                   <TableCell className="border border-white">{p.pid}</TableCell>
+                  <TableCell className="border border-white">{p.pr}</TableCell>
                   <TableCell className="border border-white">{p.at}</TableCell>
                   <TableCell className="border border-white">{p.bt}</TableCell>
                 </TableRow>

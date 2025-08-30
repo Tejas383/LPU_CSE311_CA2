@@ -10,6 +10,7 @@ import {
 } from "./components/ui/tooltip";
 import runFCFS from "./algorithms/fcfs";
 import runSJF from "./algorithms/sjf";
+import runPriorityNP from "./algorithms/priorityNP";
 
 const Process = ({
   process,
@@ -30,6 +31,12 @@ const Process = ({
       setGanttData(gantt);
       setCalculatedProcess(result);
       setReadyQueue(readyQueue);
+    }
+    if (algorithm == "priority-non-pre") {
+        const { gantt, result } = runPriorityNP(process);
+        setGanttData(gantt);
+        setCalculatedProcess(result);
+        setReadyQueue(readyQueue);
     }
   };
   return (
