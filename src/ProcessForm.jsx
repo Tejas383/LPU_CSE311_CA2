@@ -21,7 +21,13 @@ const FormSchema = z.object({
   }),
 });
 
-const ProcessForm = ({ process, setProcess }) => {
+const ProcessForm = ({
+  process,
+  setProcess,
+  algorithm,
+  quantum,
+  setQuantum,
+}) => {
   const form = useForm({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -119,6 +125,18 @@ const ProcessForm = ({ process, setProcess }) => {
               </FormItem>
             )}
           />
+          {algorithm == "rr" && (
+            <FormItem className="flex items-center gap-4">
+              <FormLabel>Quantum</FormLabel>
+              <FormControl>
+                <Input
+                  type="number"
+                  onChange={(e) => setQuantum(Number(e.target.value))}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
           <Button type="submit">Add</Button>
         </form>
       </Form>

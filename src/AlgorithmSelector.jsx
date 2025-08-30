@@ -25,6 +25,7 @@ const AlgorithmSelector = ({algorithm, setAlgorithm}) => {
             <SelectItem value="fcfs">First Come First Serve</SelectItem>
             <SelectItem value="sjf">Shortest Job First</SelectItem>
             <SelectItem value="priority-non-pre">Non-Preemptive Priority Scheduling</SelectItem>
+            <SelectItem value="rr">Round Robin</SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>

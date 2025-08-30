@@ -9,8 +9,9 @@ function App() {
   const [process, setProcess] = useState([]);
   const [calculatedProcess, setCalculatedProcess] = useState([]);
   const [ganttData, setGanttData] = useState([]);
-  const [algorithm, setAlgorithm] = useState(null);
   const [readyQueue, setReadyQueue] = useState([]);
+  const [algorithm, setAlgorithm] = useState(null);
+  const [quantum, setQuantum] = useState(2);
 
   return (
     <div className="App">
@@ -24,6 +25,8 @@ function App() {
             setGanttData={setGanttData}
             setReadyQueue={setReadyQueue}
             algorithm={algorithm}
+            quantum={quantum}
+            setQuantum={setQuantum}
           />
         </div>
         <div className='flex flex-col items-center justify-center flex-1 gap-1'>
