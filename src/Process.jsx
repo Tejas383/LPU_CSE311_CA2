@@ -42,7 +42,7 @@ const Process = ({
       setReadyQueue(readyQueue);
     }
     if (algorithm == "rr") {
-      const { gantt, result } = runRR(process);
+      const { gantt, result } = runRR(process, quantum);
       setGanttData(gantt);
       setCalculatedProcess(result);
       setReadyQueue(readyQueue);
