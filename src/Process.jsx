@@ -18,31 +18,32 @@ const Process = ({
   setProcess,
   setCalculatedProcess,
   setGanttData,
+  setReadyQueue,
   algorithm,
   quantum,
   setQuantum,
 }) => {
   const handleCalculate = () => {
     if (algorithm == "fcfs") {
-      const { gantt, result } = runFCFS(process);
+      const { gantt, result, readyQueue } = runFCFS(process);
       setGanttData(gantt);
       setCalculatedProcess(result);
       setReadyQueue(readyQueue);
     }
     if (algorithm == "sjf") {
-      const { gantt, result } = runSJF(process);
+      const { gantt, result, readyQueue } = runSJF(process);
       setGanttData(gantt);
       setCalculatedProcess(result);
       setReadyQueue(readyQueue);
     }
     if (algorithm == "priority-non-pre") {
-      const { gantt, result } = runPriorityNP(process);
+      const { gantt, result, readyQueue } = runPriorityNP(process);
       setGanttData(gantt);
       setCalculatedProcess(result);
       setReadyQueue(readyQueue);
     }
     if (algorithm == "rr") {
-      const { gantt, result } = runRR(process, quantum);
+      const { gantt, result, readyQueue } = runRR(process, quantum);
       setGanttData(gantt);
       setCalculatedProcess(result);
       setReadyQueue(readyQueue);
