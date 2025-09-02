@@ -4,6 +4,7 @@ import AlgorithmSelector from "./AlgorithmSelector";
 import Results from "./Results";
 import Process from "./Process";
 import { GanttChart } from "lucide-react";
+import ComparativeAnalysis from "./ComparativeAnalysis";
 
 function App() {
   const [process, setProcess] = useState([]);
@@ -41,6 +42,9 @@ function App() {
             readyQueue={readyQueue}
           />
         </div>
+      </div>
+      <div className="bg-green-200 h-full w-full">
+        <ComparativeAnalysis process={process} quantum={quantum} />
       </div>
     </div>
   );
