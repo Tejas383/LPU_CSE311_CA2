@@ -18,16 +18,15 @@ export default function runRR(processes, quantum) {
 
   while (remaining.some((p) => p.remainingBT > 0)) {
     if (readyQueue.length == 0) {
-      let next = remaining.find((p) => {
-        p.remainingBT > 0 && p.at > time;
-      });
+      let next = remaining.find((p) => p.remainingBT > 0 && p.at > time);
+      if (!next) break;
       time = next.at;
       readyQueue.push(next);
       continue;
     }
 
     let current = readyQueue.shift();
-    if (!current.firstResponse) current.firstResponse = time;
+    if (current.firstResponse === null) current.firstResponse = time;
 
     let executionTime = Math.min(quantum, current.remainingBT);
     let start = time;

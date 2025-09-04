@@ -15,10 +15,10 @@ import runRR from "./algorithms/rr";
 const ComparativeAnalysis = ({ process, quantum }) => {
   const copy = [...process];
 
-  const fcfs = runFCFS(copy);
-  const sjf = runSJF(copy);
-  const priorityNP = runPriorityNP(copy);
-  const rr = runRR(copy);
+  const fcfs = runFCFS(copy).result;
+  const sjf = runSJF(copy).result;
+  const priorityNP = runPriorityNP(copy).result;
+  const rr = runRR(copy, quantum).result;
 
   const calculateAverages = (processList) => {
     const n = processList.length;
