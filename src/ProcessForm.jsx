@@ -1,7 +1,7 @@
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { toast } from "sonner";
+// import { toast } from "sonner";
 import { z } from "zod";
 import {
   Form,
@@ -25,7 +25,7 @@ const ProcessForm = ({
   process,
   setProcess,
   algorithm,
-  quantum,
+  // quantum,
   setQuantum,
 }) => {
   const form = useForm({
@@ -93,7 +93,7 @@ const ProcessForm = ({
               <FormItem className="flex items-center gap-4">
                 <FormLabel>Arrival Time</FormLabel>
                 <FormControl>
-                  <Input placeholder="" {...field} />
+                  <Input type="number" placeholder="" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -106,7 +106,7 @@ const ProcessForm = ({
               <FormItem className="flex items-center gap-4">
                 <FormLabel>Burst Time</FormLabel>
                 <FormControl>
-                  <Input placeholder="" {...field} />
+                  <Input type="number" placeholder="" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -119,7 +119,7 @@ const ProcessForm = ({
               <FormItem className="flex items-center gap-4">
                 <FormLabel>Priority</FormLabel>
                 <FormControl>
-                  <Input placeholder="" {...field} />
+                  <Input type="number" placeholder="" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

@@ -20,6 +20,11 @@ export default function runSJF(processes) {
     }
 
     if (readyQueue.length == 0) {
+      gantt.push({
+        pid: "",
+        start: time,
+        end: remaining[0].at,
+      });
       time = remaining[0].at;
       continue;
     }

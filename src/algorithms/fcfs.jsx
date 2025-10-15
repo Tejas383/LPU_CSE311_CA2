@@ -10,7 +10,14 @@ export default function runFCFS(processes) {
   let readyQueue = [];
 
   for (let p of sorted) {
-    if (time < p.at) time = p.at;
+    if (time < p.at) {
+      gantt.push({
+        pid: "",
+        start: time,
+        end: p.at,
+      });
+      time = p.at;
+    }
 
     let queue = sorted
       .filter(
