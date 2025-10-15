@@ -15,7 +15,7 @@ function App() {
   const [quantum, setQuantum] = useState(2);
 
   return (
-    <div className="App">
+    <div className="App p-10 min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
       <h1 className="text-6xl font-bold pb-8">CPU SCHEDULING SIMULATOR</h1>
       <div className=" flex gap-2 ">
         <div className="w-[30%] flex flex-col gap-1">
