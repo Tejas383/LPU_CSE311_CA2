@@ -20,6 +20,14 @@ export default function runRR(processes, quantum) {
     if (readyQueue.length == 0) {
       let next = remaining.find((p) => p.remainingBT > 0 && p.at > time);
       if (!next) break;
+
+      // record idle time
+      gantt.push({
+        pid: "",
+        start: time,
+        end: next.at,
+      });
+
       time = next.at;
       readyQueue.push(next);
       continue;
