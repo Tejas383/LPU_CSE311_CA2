@@ -1,6 +1,7 @@
 import React from "react";
 import ProcessForm from "./ProcessForm";
 import ProcessTable from "./ProcessTable";
+import AlgorithmSelector from "./AlgorithmSelector";
 import { Button } from "./components/ui/button";
 import {
   Tooltip,
@@ -19,6 +20,7 @@ const Process = ({
   setCalculatedProcess,
   setGanttData,
   setReadyQueue,
+  setAlgorithm,
   algorithm,
   quantum,
   setQuantum,
@@ -50,7 +52,11 @@ const Process = ({
     }
   };
   return (
-    <div className="flex gap-1 flex-col bg-red-200">
+    <div className="flex gap-1 flex-col bg-yellow-200">
+          <AlgorithmSelector
+            algorithm={algorithm}
+            setAlgorithm={setAlgorithm}
+          />
       <ProcessForm
         process={process}
         setProcess={setProcess}

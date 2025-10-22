@@ -11,7 +11,7 @@ import {
 
 const AlgorithmSelector = ({ setAlgorithm }) => {
   return (
-    <div className="flex flex-col items-center justify-center bg-red-500/50 w-full p-5">
+    <div className="flex flex-col items-center justify-center w-full p-5">
       <h2 className="font-bold text-2xl underline p-2">Algorithm</h2>
       <p>Select the algorithm: </p>
       <Select onValueChange={setAlgorithm} className="">
