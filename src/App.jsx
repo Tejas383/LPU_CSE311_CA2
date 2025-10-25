@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./App.css";
-import AlgorithmSelector from "./AlgorithmSelector";
 import Results from "./Results";
 import Process from "./Process";
 import { GanttChart } from "lucide-react";

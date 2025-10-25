@@ -2,6 +2,7 @@ import React from "react";
 import ResultsTable from "./ResultsTable";
 import GanttChart from "./GanttChart";
 import ReadyQueue from "./readyQueue";
+import Simulation from "./Simulation";
 
 const Results = ({ process, ganttData, readyQueue }) => {
   const n = process.length;
@@ -21,6 +22,7 @@ const Results = ({ process, ganttData, readyQueue }) => {
       <ResultsTable process={process} />
       <GanttChart gantt={ganttData} />
       <ReadyQueue readyQueue={readyQueue} />
+      <Simulation />
 
       <div className="flex flex-col items-start w-full px-5 gap-1 ml-8">
         <div className="flex flex-row gap-2">
