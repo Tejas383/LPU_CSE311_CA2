@@ -4,22 +4,22 @@ import GanttChart from "./GanttChart";
 import ReadyQueue from "./readyQueue";
 import Simulation from "./Simulation";
 
-const Results = ({ process, ganttData, readyQueue }) => {
-  const n = process.length;
+const Results = ({ calculatedProcess, ganttData, readyQueue }) => {
+  const n = calculatedProcess.length;
   const averageTAT = n
-    ? (process.reduce((sum, p) => sum + (p.tat ?? 0), 0) / n).toFixed(2)
+    ? (calculatedProcess.reduce((sum, p) => sum + (p.tat ?? 0), 0) / n).toFixed(2)
     : 0;
   const averageWT = n
-    ? (process.reduce((sum, p) => sum + (p.wt ?? 0), 0) / n).toFixed(2)
+    ? (calculatedProcess.reduce((sum, p) => sum + (p.wt ?? 0), 0) / n).toFixed(2)
     : 0;
   const averageRT = n
-    ? (process.reduce((sum, p) => sum + (p.rt ?? 0), 0) / n).toFixed(2)
+    ? (calculatedProcess.reduce((sum, p) => sum + (p.rt ?? 0), 0) / n).toFixed(2)
     : 0;
 
   return (
     <div className="flex flex-col items-center justify-center bg-red-500/50 w-full h-full gap-2">
       <h2 className="font-bold text-2xl underline p-2">Results</h2>
-      <ResultsTable process={process} />
+      <ResultsTable calculatedProcess={calculatedProcess} />
       <GanttChart gantt={ganttData} />
       <ReadyQueue readyQueue={readyQueue} />
       <Simulation />

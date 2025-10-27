@@ -2,7 +2,6 @@ import { useState } from "react";
 import "./App.css";
 import Results from "./Results";
 import Process from "./Process";
-import { GanttChart } from "lucide-react";
 import ComparativeAnalysis from "./ComparativeAnalysis";
 
 function App() {
@@ -18,40 +17,51 @@ function App() {
       <header className="bg-white/80 backdrop-blur-sm border-b border-purple-100 sticky top-0 z-10">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center gap-3 justify-center">
-            {/* <div className="p-2 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg">
-            </div> */}
             <h1 className="bg-gradient-to-r text-4xl font-bold from-blue-600 to-purple-400 bg-clip-text text-transparent">
               CPU SCHEDULING SIMULATOR
             </h1>
           </div>
         </div>
       </header>
-      <div className=" flex gap-2 ">
-        <div className="w-[30%] flex flex-col gap-1">
-          <Process
-            process={process}
-            setProcess={setProcess}
-            setCalculatedProcess={setCalculatedProcess}
-            setGanttData={setGanttData}
-            setReadyQueue={setReadyQueue}
-            setAlgorithm={setAlgorithm}
-            algorithm={algorithm}
-            quantum={quantum}
-            setQuantum={setQuantum}
-          />
+
+      <main className="container mx-auto px-6 py-8">
+
+        {/*
+
+        <div>
+          <div></div> // left -> Process Component
+          <div></div> // right -> Results Component
         </div>
-        <div className="flex flex-col items-center justify-center flex-1 gap-1">
-          <hr className="border border-black w-full" />
-          <Results
-            process={calculatedProcess}
-            ganttData={ganttData}
-            readyQueue={readyQueue}
-          />
+
+        */}
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="space-y-6">
+            <Process
+              process={process}
+              setProcess={setProcess}
+              setCalculatedProcess={setCalculatedProcess}
+              setGanttData={setGanttData}
+              setReadyQueue={setReadyQueue}
+              setAlgorithm={setAlgorithm}
+              algorithm={algorithm}
+              quantum={quantum}
+              setQuantum={setQuantum}
+            />
+          </div>
+          
+          <div className="flex flex-col items-center justify-center flex-1 gap-1">
+            <Results
+              calculatedProcess={calculatedProcess}
+              ganttData={ganttData}
+              readyQueue={readyQueue}
+            />
+          </div>
         </div>
-      </div>
-      <div className="bg-green-200 h-full w-full">
-        <ComparativeAnalysis process={process} quantum={quantum} />
-      </div>
+        {/* <div className="bg-green-200 h-full w-full">
+          <ComparativeAnalysis process={process} quantum={quantum} />
+        </div> */}
+      </main>
     </div>
   );
 }

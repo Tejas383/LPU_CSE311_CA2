@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-const ResultsTable = ({ process, setProcess }) => {
+const ResultsTable = ({ calculatedProcess }) => {
   return (
     <div className=" flex flex-col items-center justify-center bg-red-500/50 w-full h-full ">
       <Table className="">
@@ -41,8 +41,8 @@ const ResultsTable = ({ process, setProcess }) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {process && process.length > 0 ? (
-            process.map((p, idx) => (
+          {calculatedProcess && calculatedProcess.length > 0 ? (
+            calculatedProcess.map((p, idx) => (
               <TableRow key={idx}>
                 <TableCell className="border border-white">{p.pid}</TableCell>
                 <TableCell className="border border-white">{p.pr}</TableCell>

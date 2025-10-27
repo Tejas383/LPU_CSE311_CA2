@@ -3,6 +3,7 @@ import ProcessForm from "./ProcessForm";
 import ProcessTable from "./ProcessTable";
 import AlgorithmSelector from "./AlgorithmSelector";
 import { Button } from "./components/ui/button";
+import { Card } from "./components/ui/card";
 import {
   Tooltip,
   TooltipContent,
@@ -52,11 +53,10 @@ const Process = ({
     }
   };
   return (
-    <div className="flex gap-1 flex-col bg-yellow-200">
-          <AlgorithmSelector
-            algorithm={algorithm}
-            setAlgorithm={setAlgorithm}
-          />
+    <Card className="p-6 bg-white/90 backdrop-blur-sm shadow-xl border-purple-100">
+      <div className="space-y-6">
+        <AlgorithmSelector algorithm={algorithm} setAlgorithm={setAlgorithm} />
+      </div>
       <ProcessForm
         process={process}
         setProcess={setProcess}
@@ -82,7 +82,7 @@ const Process = ({
           )}
         </Tooltip>
       </TooltipProvider>
-    </div>
+    </Card>
   );
 };
 

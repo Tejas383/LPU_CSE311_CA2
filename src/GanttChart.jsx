@@ -25,7 +25,7 @@ const GanttChart = ({ gantt }) => {
       </div>
 
       {gantt && gantt.length > 0 && (
-        <div className="flex  text-xs ">
+        <div className="flex text-xs ">
           {gantt.map((p, idx) => (
             <div
               key={idx}
