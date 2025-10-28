@@ -4,7 +4,7 @@ import GanttChart from "./GanttChart";
 import ReadyQueue from "./readyQueue";
 import Simulation from "./Simulation";
 
-const Results = ({ calculatedProcess, ganttData, readyQueue }) => {
+const Results = ({ calculatedProcess, ganttData, readyQueue, currentTime }) => {
   const n = calculatedProcess.length;
   const averageTAT = n
     ? (calculatedProcess.reduce((sum, p) => sum + (p.tat ?? 0), 0) / n).toFixed(2)
@@ -20,7 +20,7 @@ const Results = ({ calculatedProcess, ganttData, readyQueue }) => {
     <div className="flex flex-col items-center justify-center bg-red-500/50 w-full h-full gap-2">
       <h2 className="font-bold text-2xl underline p-2">Results</h2>
       <ResultsTable calculatedProcess={calculatedProcess} />
-      <GanttChart gantt={ganttData} />
+      <GanttChart gantt={ganttData} currentTime={currentTime} />
       <ReadyQueue readyQueue={readyQueue} />
       <Simulation />
 

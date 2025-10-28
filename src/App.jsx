@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Results from "./Results";
 import Process from "./Process";
+import Timer from "./Timer";
 import ComparativeAnalysis from "./ComparativeAnalysis";
 
 function App() {
@@ -11,6 +12,17 @@ function App() {
   const [readyQueue, setReadyQueue] = useState([]);
   const [algorithm, setAlgorithm] = useState(null);
   const [quantum, setQuantum] = useState(2);
+  const [isRunning, setIsRunning] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [totalTime, setTotalTime] = useState(0);
+  const [reset, setReset] = useState(false);
+
+  useEffect(() => {
+    if (ganttData.length > 0) {
+      const maxEnd = Math.max(...ganttData.map((p) => p.end));
+      setTotalTime(maxEnd);
+    }
+  }, [ganttData]);
 
   return (
     <div className="App min-h-screen bg-gradient-to-br from-blue-300 via-purple-100 to-pink-300">
@@ -25,7 +37,6 @@ function App() {
       </header>
 
       <main className="container mx-auto px-6 py-8">
-
         {/*
 
         <div>
@@ -47,14 +58,23 @@ function App() {
               algorithm={algorithm}
               quantum={quantum}
               setQuantum={setQuantum}
+              setIsRunning={setIsRunning}
             />
           </div>
-          
+
           <div className="flex flex-col items-center justify-center flex-1 gap-1">
+            <Timer
+              isRunning={isRunning}
+              onTick={setCurrentTime}
+              totalTime={totalTime}
+              setIsRunning={setIsRunning}
+            />
+
             <Results
               calculatedProcess={calculatedProcess}
               ganttData={ganttData}
               readyQueue={readyQueue}
+              currentTime={currentTime}
             />
           </div>
         </div>

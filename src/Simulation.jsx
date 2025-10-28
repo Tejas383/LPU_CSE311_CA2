@@ -4,7 +4,7 @@ import FCFSSimulator from "./simulators/FCFSSimulator";
 const Simulation = () => {
   return (
     <div>
-      <FCFSSimulator />
+      {/* <FCFSSimulator /> */}
     </div>
   )
 }

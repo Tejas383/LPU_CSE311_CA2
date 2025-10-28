@@ -25,6 +25,7 @@ const Process = ({
   algorithm,
   quantum,
   setQuantum,
+  setIsRunning,
 }) => {
   const handleCalculate = () => {
     if (algorithm == "fcfs") {
@@ -51,6 +52,7 @@ const Process = ({
       setCalculatedProcess(result);
       setReadyQueue(readyQueue);
     }
+    setIsRunning(true);
   };
   return (
     <Card className="p-6 bg-white/90 backdrop-blur-sm shadow-xl border-purple-100">
