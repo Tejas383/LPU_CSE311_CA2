@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Plus } from 'lucide-react';
 
 const FormSchema = z.object({
   pid: z.string().min(2, {
@@ -136,7 +137,13 @@ const ProcessForm = ({
               <FormMessage />
             </FormItem>
           )}
-          <Button type="submit">Add</Button>
+          <Button
+            type="submit"
+            className="text-white flex-1 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
+          >
+            <Plus className="w-4 h-4 mr-2" />
+            Add
+          </Button>
         </form>
       </Form>
     </div>
