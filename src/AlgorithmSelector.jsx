@@ -11,16 +11,14 @@ import {
 
 const AlgorithmSelector = ({ setAlgorithm }) => {
   return (
-    <div className="flex flex-col items-center justify-center w-full p-5">
-      <h2 className="font-bold text-2xl underline p-2">Algorithm</h2>
-      <p>Select the algorithm: </p>
+    <div className="">
+      <h2 className="mb-4 text-purple-900">Select Scheduling Algorithm</h2>
       <Select onValueChange={setAlgorithm} className="">
-        <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="Select the algorithm" />
-        </SelectTrigger>
+        <SelectTrigger className="w-full bg-white border-purple-200 focus:ring-purple-500">
+              <SelectValue placeholder="Select algorithm" />
+            </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectLabel>Algorithms</SelectLabel>
             <SelectItem value="fcfs">First Come First Serve</SelectItem>
             <SelectItem value="sjf">Shortest Job First</SelectItem>
             <SelectItem value="priority-non-pre">

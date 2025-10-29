@@ -26,6 +26,7 @@ const Process = ({
   quantum,
   setQuantum,
   setIsRunning,
+  setReset,
 }) => {
   const handleCalculate = () => {
     if (algorithm == "fcfs") {
@@ -52,13 +53,20 @@ const Process = ({
       setCalculatedProcess(result);
       setReadyQueue(readyQueue);
     }
+
+    setReset(true);
     setIsRunning(true);
+
+    setTimeout(() => {
+      setReset(false);
+      setIsRunning(true);
+    }, 200);
   };
   return (
     <Card className="p-6 bg-white/90 backdrop-blur-sm shadow-xl border-purple-100">
-      <div className="space-y-6">
+      {/* <div className="space-y-6"> */}
         <AlgorithmSelector algorithm={algorithm} setAlgorithm={setAlgorithm} />
-      </div>
+      {/* </div> */}
       <ProcessForm
         process={process}
         setProcess={setProcess}
@@ -66,7 +74,7 @@ const Process = ({
         quantum={quantum}
         setQuantum={setQuantum}
       />
-      <hr className="border border-black w-full" />
+      {/* <hr className="border border-black w-full" /> */}
       <ProcessTable process={process} setProcess={setProcess} />
       <TooltipProvider>
         <Tooltip>

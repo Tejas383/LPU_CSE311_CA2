@@ -13,6 +13,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Card } from "./components/ui/card";
 
 const ProcessTable = ({ process, setProcess }) => {
   const handleDeleteEvent = (idx) => {
@@ -24,7 +25,8 @@ const ProcessTable = ({ process, setProcess }) => {
   const [openRow, setOpenRow] = useState(null);
 
   return (
-    <div className=" flex flex-col items-center justify-center bg-red-500/50 py-5 ">
+    <Card className="p-6 bg-white/90 backdrop-blur-sm shadow-xl border-purple-100">
+    {/* <div className=" flex flex-col items-center justify-center bg-red-500/50 py-5 "> */}
       <Table className="">
         <TableHeader>
           <TableRow className="">
@@ -69,7 +71,8 @@ const ProcessTable = ({ process, setProcess }) => {
           ))}
         </TableBody>
       </Table>
-    </div>
+    {/* </div> */}
+    </Card>
   );
 };
 

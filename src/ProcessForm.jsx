@@ -1,12 +1,10 @@
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-// import { toast } from "sonner";
 import { z } from "zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -66,8 +64,8 @@ const ProcessForm = ({
   };
 
   return (
-    <div className=" flex flex-col items-center justify-center bg-red-500/50 p-5 ">
-      <h2 className="font-bold text-2xl underline p-2">Processes</h2>
+    <div className="space-y-4">
+      <h3 className="mb-4 text-purple-900">Add Process</h3>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(handleAddProcess)}
@@ -82,7 +80,6 @@ const ProcessForm = ({
                 <FormControl>
                   <Input placeholder="" {...field} />
                 </FormControl>
-                <FormMessage />
               </FormItem>
             )}
           />

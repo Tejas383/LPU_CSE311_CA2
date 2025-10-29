@@ -59,6 +59,7 @@ function App() {
               quantum={quantum}
               setQuantum={setQuantum}
               setIsRunning={setIsRunning}
+              setReset={setReset}
             />
           </div>
 
@@ -75,6 +76,7 @@ function App() {
               ganttData={ganttData}
               readyQueue={readyQueue}
               currentTime={currentTime}
+              reset={reset}
             />
           </div>
         </div>
