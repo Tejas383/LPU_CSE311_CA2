@@ -64,7 +64,7 @@ const ProcessForm = ({
   };
 
   return (
-    <div className="space-y-4">
+    <div className="py-6">
       <h3 className="mb-4 text-purple-900">Add Process</h3>
       <Form {...form}>
         <form
@@ -109,19 +109,21 @@ const ProcessForm = ({
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="pr"
-            render={({ field }) => (
-              <FormItem className="flex items-center gap-4">
-                <FormLabel>Priority</FormLabel>
-                <FormControl>
-                  <Input type="number" placeholder="" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          {algorithm == "priority-non-pre" && (
+            <FormField
+              control={form.control}
+              name="pr"
+              render={({ field }) => (
+                <FormItem className="flex items-center gap-4">
+                  <FormLabel>Priority</FormLabel>
+                  <FormControl>
+                    <Input type="number" placeholder="" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
           {algorithm == "rr" && (
             <FormItem className="flex items-center gap-4">
               <FormLabel>Quantum</FormLabel>

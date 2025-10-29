@@ -64,35 +64,35 @@ const Process = ({
   };
   return (
     <Card className="p-6 bg-white/90 backdrop-blur-sm shadow-xl border-purple-100">
-      {/* <div className="space-y-6"> */}
+        {/* // <div className="space-y-6"> */}
         <AlgorithmSelector algorithm={algorithm} setAlgorithm={setAlgorithm} />
-      {/* </div> */}
-      <ProcessForm
-        process={process}
-        setProcess={setProcess}
-        algorithm={algorithm}
-        quantum={quantum}
-        setQuantum={setQuantum}
-      />
-      {/* <hr className="border border-black w-full" /> */}
-      <ProcessTable process={process} setProcess={setProcess} />
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <span>
-              <Button onClick={handleCalculate} disabled={!algorithm}>
-                Calculate
-              </Button>
-            </span>
-          </TooltipTrigger>
-          {!algorithm && (
-            <TooltipContent>
-              <p>Please select an algorithm first</p>
-            </TooltipContent>
-          )}
-        </Tooltip>
-      </TooltipProvider>
-    </Card>
+        <ProcessForm
+          process={process}
+          setProcess={setProcess}
+          algorithm={algorithm}
+          quantum={quantum}
+          setQuantum={setQuantum}
+        />
+        {/* <hr className="border border-black w-full" /> */}
+        <ProcessTable process={process} setProcess={setProcess} />
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <span>
+                <Button onClick={handleCalculate} disabled={!algorithm}>
+                  Calculate
+                </Button>
+              </span>
+            </TooltipTrigger>
+            {!algorithm && (
+              <TooltipContent>
+                <p>Please select an algorithm first</p>
+              </TooltipContent>
+            )}
+          </Tooltip>
+        </TooltipProvider>
+        {/* // </div> */}
+      </Card>
   );
 };
 
