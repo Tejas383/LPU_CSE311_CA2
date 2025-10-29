@@ -82,7 +82,7 @@ const Process = ({
               <Button
                 onClick={handleCalculate}
                 disabled={!algorithm}
-                className="flex-1 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white"
+                className="text-white flex-1 bg-gradient-to-r bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
               >
                 <Play className="w-4 h-4 mr-2" />
                 Calculate
