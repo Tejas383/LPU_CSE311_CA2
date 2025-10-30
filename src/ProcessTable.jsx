@@ -69,9 +69,11 @@ const ProcessTable = ({ process, setProcess, algorithm }) => {
                     <TableCell className="border border-white">
                       {p.pid}
                     </TableCell>
-                    <TableCell className="border border-white">
+                    {algorithm === "priority-non-pre" && (
+                      <TableCell className="border border-white">
                       {p.pr}
                     </TableCell>
+                    )}
                     <TableCell className="border border-white">
                       {p.at}
                     </TableCell>

@@ -17,11 +17,10 @@ const Results = ({ calculatedProcess, ganttData, readyQueue, currentTime }) => {
     : 0;
 
   return (
-    <div className="flex flex-col items-center justify-center bg-red-500/50 w-full h-full gap-2">
-      <h2 className="font-bold text-2xl underline p-2">Results</h2>
+    <div className="space-y-6">
       <ResultsTable calculatedProcess={calculatedProcess} />
       <GanttChart gantt={ganttData} currentTime={currentTime} />
-      <ReadyQueue readyQueue={readyQueue} />
+      {/* <ReadyQueue readyQueue={readyQueue} /> */}
       <Simulation />
 
       <div className="flex flex-col items-start w-full px-5 gap-1 ml-8">

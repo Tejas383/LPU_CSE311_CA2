@@ -37,15 +37,6 @@ function App() {
       </header>
 
       <main className="container mx-auto px-6 py-8">
-        {/*
-
-        <div>
-          <div></div> // left -> Process Component
-          <div></div> // right -> Results Component
-        </div>
-
-        */}
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="space-y-6">
             <Process
@@ -84,6 +75,10 @@ function App() {
           <ComparativeAnalysis process={process} quantum={quantum} />
         </div> */}
       </main>
+
+      <footer className="mt-16 py-6 text-center text-gray-600 border-t border-purple-100 bg-white/50">
+        <p>Developed by Tejasvita | © 2025</p>
+      </footer>
     </div>
   );
 }
