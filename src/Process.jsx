@@ -18,7 +18,7 @@ const Process = ({
   setReset,
 }) => {
   return (
-    <div>
+    <div className="flex flex-col gap-6">
       <Card className="p-6 bg-white/90 backdrop-blur-sm shadow-xl border-purple-100">
         <AlgorithmSelector algorithm={algorithm} setAlgorithm={setAlgorithm} />
         <ProcessForm
