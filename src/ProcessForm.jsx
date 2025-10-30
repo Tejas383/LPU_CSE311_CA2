@@ -12,7 +12,12 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Plus } from 'lucide-react';
+import { Plus } from "lucide-react";
+import runFCFS from "./algorithms/fcfs";
+import runSJF from "./algorithms/sjf";
+import runPriorityNP from "./algorithms/priorityNP";
+import runRR from "./algorithms/rr";
+import { Play } from "lucide-react";
 
 const FormSchema = z.object({
   pid: z.string().min(2, {
@@ -24,8 +29,13 @@ const ProcessForm = ({
   process,
   setProcess,
   algorithm,
-  // quantum,
+  quantum,
   setQuantum,
+  setCalculatedProcess,
+  setGanttData,
+  setReadyQueue,
+  setIsRunning,
+  setReset,
 }) => {
   const form = useForm({
     resolver: zodResolver(FormSchema),
@@ -62,6 +72,41 @@ const ProcessForm = ({
 
     setProcess([...process, newProcess]);
     form.reset();
+  };
+
+  const handleCalculate = () => {
+    if (algorithm == "fcfs") {
+      const { gantt, result, readyQueue } = runFCFS(process);
+      setGanttData(gantt);
+      setCalculatedProcess(result);
+      setReadyQueue(readyQueue);
+    }
+    if (algorithm == "sjf") {
+      const { gantt, result, readyQueue } = runSJF(process);
+      setGanttData(gantt);
+      setCalculatedProcess(result);
+      setReadyQueue(readyQueue);
+    }
+    if (algorithm == "priority-non-pre") {
+      const { gantt, result, readyQueue } = runPriorityNP(process);
+      setGanttData(gantt);
+      setCalculatedProcess(result);
+      setReadyQueue(readyQueue);
+    }
+    if (algorithm == "rr") {
+      const { gantt, result, readyQueue } = runRR(process, quantum);
+      setGanttData(gantt);
+      setCalculatedProcess(result);
+      setReadyQueue(readyQueue);
+    }
+
+    setReset(true);
+    setIsRunning(true);
+
+    setTimeout(() => {
+      setReset(false);
+      setIsRunning(true);
+    }, 200);
   };
 
   return (
@@ -137,13 +182,24 @@ const ProcessForm = ({
               <FormMessage />
             </FormItem>
           )}
-          <Button
-            type="submit"
-            className="text-white flex-1 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
-          >
-            <Plus className="w-4 h-4 mr-2" />
-            Add
-          </Button>
+
+          <div className="flex gap-3">
+            <Button
+              type="submit"
+              className="text-white flex-1 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
+            >
+              <Plus className="w-4 h-4 mr-2" />
+              Add
+            </Button>
+            <Button
+              onClick={handleCalculate}
+              disabled={!algorithm}
+              className="text-white flex-1 bg-gradient-to-r bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
+            >
+              <Play className="w-4 h-4 mr-2" />
+              Calculate
+            </Button>
+          </div>
         </form>
       </Form>
     </div>
