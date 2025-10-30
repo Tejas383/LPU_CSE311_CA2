@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Card } from "./components/ui/card";
 
-const ProcessTable = ({ process, setProcess }) => {
+const ProcessTable = ({ process, setProcess, algorithm }) => {
   const handleDeleteEvent = (idx) => {
     const updated = [...process];
     updated.splice(idx, 1);
@@ -34,15 +34,18 @@ const ProcessTable = ({ process, setProcess }) => {
           No processes added yet. Add a process to get started.
         </div>
       ) : (
+        <div className="rounded-lg border border-purple-200 overflow-hidden">
         <Table className="">
           <TableHeader>
-            <TableRow className="">
+            <TableRow className="bg-gradient-to-r from-blue-50 to-purple-50">
               <TableHead className="border border-white text-center">
                 Process ID
               </TableHead>
-              <TableHead className="border border-white text-center">
+              {algorithm === "priority-non-pre" && (
+                <TableHead className="border border-white text-center">
                 Priority
               </TableHead>
+              )}
               <TableHead className="border border-white text-center">
                 Arrival Time
               </TableHead>
@@ -86,6 +89,7 @@ const ProcessTable = ({ process, setProcess }) => {
             ))}
           </TableBody>
         </Table>
+        </div>
       )}
     </Card>
   );

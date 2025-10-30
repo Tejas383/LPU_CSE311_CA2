@@ -34,7 +34,7 @@ const Process = ({
           setReset={setReset}
         />
       </Card>
-      <ProcessTable process={process} setProcess={setProcess} />
+      <ProcessTable process={process} setProcess={setProcess} algorithm={algorithm} />
     </div>
   );
 };
