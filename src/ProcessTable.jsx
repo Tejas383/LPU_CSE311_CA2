@@ -37,7 +37,7 @@ const ProcessTable = ({ process, setProcess, algorithm }) => {
         <div className="rounded-lg border border-purple-200 overflow-hidden">
         <Table className="">
           <TableHeader>
-            <TableRow className="bg-gradient-to-r from-blue-50 to-purple-50">
+            <TableRow className="bg-gradient-to-r from-blue-100 to-purple-100 ">
               <TableHead className="border border-white text-center">
                 Process ID
               </TableHead>
@@ -63,7 +63,7 @@ const ProcessTable = ({ process, setProcess, algorithm }) => {
               >
                 <DropdownMenuTrigger asChild>
                   <TableRow
-                    className="cursor-pointer"
+                    className="cursor-pointer hover:bg-purple-100/50 text-center"
                     onClick={() => setOpenRow(idx)}
                   >
                     <TableCell className="border border-white">
