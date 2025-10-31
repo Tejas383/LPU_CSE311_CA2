@@ -1,4 +1,6 @@
 import React from "react";
+import { BarChart3 } from "lucide-react";
+import { Card } from "./components/ui/card";
 
 /**
  * Props:
@@ -6,118 +8,142 @@ import React from "react";
  *  - currentTime: number (seconds / time units)
  *  - pxPerUnit: optional number (pixels per time unit), default 40
  */
-const GanttChart = ({ gantt = [], currentTime = 0, pxPerUnit = 40 }) => {
+const GanttChart = ({ gantt = [] }) => {
   if (!Array.isArray(gantt) || gantt.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center bg-red-500/20 w-full h-full p-4">
-        <h2 className="text-xl underline">Gantt Chart</h2>
-        <div className="mt-4">No processes yet</div>
-      </div>
+      <Card className="p-6 bg-white/90 backdrop-blur-sm shadow-xl border-purple-100">
+        <div className="flex items-center gap-2 mb-4">
+          <BarChart3 className="w-5 h-5 text-purple-600" />
+          <h3 className="text-purple-900">Gantt Chart</h3>
+        </div>
+        <div className="text-center py-12 text-gray-500">
+          <BarChart3 className="w-12 h-12 mx-auto mb-3 opacity-30" />
+          <p>Click "Simulate" to generate the Gantt chart</p>
+        </div>
+      </Card>
     );
   }
 
   // sort by start time to render left -> right
   const sorted = [...gantt].sort((a, b) => a.start - b.start);
 
-  const minStart = Math.min(...sorted.map((p) => p.start));
-  const maxEnd = Math.max(...sorted.map((p) => p.end));
-  const totalWidth = (maxEnd - minStart) * pxPerUnit;
+  const maxTime = Math.max(...sorted.map((p) => p.end));
 
-  // helper to clamp a number
-  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const colors = [
+    "from-blue-400 to-blue-500",
+    "from-purple-400 to-purple-500",
+    "from-pink-400 to-pink-500",
+    "from-indigo-400 to-indigo-500",
+    "from-violet-400 to-violet-500",
+    "from-fuchsia-400 to-fuchsia-500",
+    "from-cyan-400 to-cyan-500",
+    "from-teal-400 to-teal-500",
+  ];
+
+  const processColors = {};
+  // assign each pid a distinct color
+  const uniquePIDs = [...new Set(sorted.map((p) => p.pid))];
+  uniquePIDs.forEach((pid, index) => {
+    processColors[pid] = colors[index % colors.length];
+  });
+
+  // Merge idle gaps (empty spaces) into timeline
+  const timeline = [];
+  for (let i = 0; i < sorted.length; i++) {
+    const curr = sorted[i];
+    const next = sorted[i + 1];
+    timeline.push(curr);
+
+    // if next process starts later than current end -> idle gap
+    if (next && next.start > curr.end) {
+      timeline.push({
+        pid: "idle",
+        start: curr.end,
+        end: next.start,
+      });
+    }
+  }
 
   return (
-    <div className="flex flex-col items-start justify-start bg-red-500/20 w-full p-4 rounded-md">
-      <h2 className="text-xl underline mb-3">Gantt Chart</h2>
+    <Card className="p-6 bg-white/90 backdrop-blur-sm shadow-xl border-purple-100">
+      <div className="flex items-center gap-2 mb-4">
+        <BarChart3 className="w-5 h-5 text-purple-600" />
+        <h3 className="text-purple-900">Gantt Chart</h3>
+      </div>
 
-      <div
-        className="relative w-full border border-gray-300 bg-white/60"
-        style={{ height: 64, minWidth: "100%", overflow: "hidden" }}
-      >
-        {/* Track (background) */}
-        <div
-          className="absolute left-0 top-0 bottom-0"
-          style={{ width: `${totalWidth}px` }}
-        />
+      <div className="space-y-4">
+        {/* Timeline */}
+        <div className="relative">
+          <div className="flex items-center h-16 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg overflow-hidden border border-purple-200">
+            {timeline.map((p, index) => {
+              const width = ((p.end - p.start) / maxTime) * 100;
+              const left = (p.start / maxTime) * 100;
+              
+              if (p.pid === "idle") {
+                return (
+                  <div
+                    key={index}
+                    className="absolute h-full bg-gray-200/40 border-r border-white"
+                    style={{ left: `${left}%`, width: `${width}%` }}
+                  />
+                );
+              }
 
-        {/* Bars */}
-        {sorted.map((p, idx) => {
-          const duration = p.end - p.start;
-          if (duration <= 0) return null;
-
-          // how much of this process is visible according to currentTime (in time units)
-          const visibleTime = clamp(currentTime - p.start, 0, duration);
-          const visibleWidth = visibleTime * pxPerUnit;
-          const fullWidth = duration * pxPerUnit;
-
-          // left offset relative to minStart
-          const leftOffset = (p.start - minStart) * pxPerUnit;
-
-          return (
-            <div
-              key={`${p.pid}-${idx}`}
-              className="absolute top-6 h-10 flex items-center justify-start"
-              style={{
-                left: leftOffset,
-                width: fullWidth,
-              }}
-            >
-              {/* background (full) - light outline */}
-              <div
-                className="h-full border border-black/10 rounded-l-md"
-                style={{
-                  width: fullWidth,
-                  backgroundColor: "#d1fae5", // green-200 equivalent
-                }}
-              >
-                {/* visible (growing) part */}
+              return (
                 <div
-                  className="h-full flex items-center justify-center whitespace-nowrap overflow-hidden transition-all duration-300"
+                  key={`${p.pid}-${index}`}
+                  className={`absolute h-full flex items-center justify-center bg-gradient-to-r ${
+                    processColors[p.pid]
+                  } border-r-2 border-white transition-all hover:opacity-90`}
                   style={{
-                    width: visibleWidth,
-                    backgroundColor: "#34d399", // green-400-ish
-                    color: "black",
-                    borderRadius: visibleWidth === fullWidth ? 8 : "6px 0 0 6px",
+                    left: `${left}%`,
+                    width: `${width}%`,
                   }}
                 >
-                  {visibleWidth > 8 ? <span className="px-1">{p.pid}</span> : null}
+                  <span className="text-white text-sm px-2 truncate">
+                    {p.pid}
+                  </span>
                 </div>
-              </div>
-            </div>
-          );
-        })}
+              );
+            })}
+          </div>
 
-        {/* time ticks below bars */}
-        <div className="absolute left-0 bottom-0 flex items-center" style={{ height: 20 }}>
-          {Array.from({ length: maxEnd - minStart + 1 }).map((_, i) => {
-            const t = minStart + i;
-            return (
-              <div
-                key={`tick-${t}`}
-                className="flex flex-col items-center"
-                style={{ width: pxPerUnit, minWidth: pxPerUnit, textAlign: "center" }}
-              >
-                <div style={{ height: 6, borderLeft: "1px solid rgba(0,0,0,0.2)" }} />
-                <div className="text-xs mt-0.5">{t}</div>
+          {/* Time markers */}
+          <div className="relative mt-2 h-6">
+            {timeline.map((p, index) => (
+              <div key={`marker-${index}`}>
+                <div
+                  className="absolute text-xs text-gray-600"
+                  style={{ left: `${(p.start / maxTime) * 100}%` }}
+                >
+                  {p.start}
+                </div>
+                {index === timeline.length - 1 && (
+                  <div
+                    className="absolute text-xs text-gray-600"
+                    style={{ left: `${(p.end / maxTime) * 100}%` }}
+                  >
+                    {p.end}
+                  </div>
+                )}
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
 
-        {/* current time indicator (vertical line) */}
-        {currentTime >= minStart && currentTime <= maxEnd && (
-          <div
-            className="absolute top-0"
-            style={{
-              left: (currentTime - minStart) * pxPerUnit - 1, // minus 1 for center of 2px line
-              height: "100%",
-              width: 2,
-              background: "rgba(0,0,0,0.6)",
-            }}
-          />
-        )}
+        {/* Legend */}
+        <div className="flex flex-wrap gap-3 pt-2">
+          {uniquePIDs.map((pid, index) => (
+            <div key={`legend-${index}`} className="flex items-center gap-2">
+              <div
+                className={`w-4 h-4 rounded bg-gradient-to-r ${processColors[pid]}`}
+              />
+              <span className="text-sm text-gray-700">{pid}</span>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </Card>
   );
 };
 
