@@ -4,6 +4,7 @@ import Results from "./Results";
 import Process from "./Process";
 import Timer from "./Timer";
 import ComparativeAnalysis from "./ComparativeAnalysis";
+import Simulation from "./Simulation";
 
 function App() {
   const [process, setProcess] = useState([]);
@@ -16,6 +17,7 @@ function App() {
   const [currentTime, setCurrentTime] = useState(0);
   const [totalTime, setTotalTime] = useState(0);
   const [reset, setReset] = useState(false);
+  const [isSimulating, setIsSimulating] = useState(false);
 
   useEffect(() => {
     if (ganttData.length > 0) {
@@ -23,6 +25,11 @@ function App() {
       setTotalTime(maxEnd);
     }
   }, [ganttData]);
+
+  const handleSimulate = () => {
+    if (ganttData.length === 0) return alert("Please calculate first!");
+    setIsSimulating(true);
+  };
 
   return (
     <div className="App min-h-screen bg-gradient-to-br from-blue-300 via-purple-100 to-pink-300">
@@ -68,9 +75,18 @@ function App() {
               readyQueue={readyQueue}
               currentTime={currentTime}
               reset={reset}
+              isSimulating={isSimulating}
             />
           </div>
         </div>
+
+        {/* {ganttData.length > 0 && (
+          <div className="mt-10">
+            <h2 className="text-2xl font-bold text-center mb-4">Simulation</h2>
+            <Simulation processes={ganttData} />
+          </div>
+        )} */}
+
         {/* <div className="bg-green-200 h-full w-full">
           <ComparativeAnalysis process={process} quantum={quantum} />
         </div> */}

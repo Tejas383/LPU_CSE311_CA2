@@ -4,24 +4,47 @@ import GanttChart from "./GanttChart";
 import ReadyQueue from "./readyQueue";
 import Simulation from "./Simulation";
 
-const Results = ({ calculatedProcess, ganttData, readyQueue, currentTime }) => {
+const Results = ({
+  calculatedProcess,
+  ganttData,
+  readyQueue,
+  currentTime,
+  isSimulating,
+}) => {
   const n = calculatedProcess.length;
   const averageTAT = n
-    ? (calculatedProcess.reduce((sum, p) => sum + (p.tat ?? 0), 0) / n).toFixed(2)
+    ? (calculatedProcess.reduce((sum, p) => sum + (p.tat ?? 0), 0) / n).toFixed(
+        2
+      )
     : 0;
   const averageWT = n
-    ? (calculatedProcess.reduce((sum, p) => sum + (p.wt ?? 0), 0) / n).toFixed(2)
+    ? (calculatedProcess.reduce((sum, p) => sum + (p.wt ?? 0), 0) / n).toFixed(
+        2
+      )
     : 0;
   const averageRT = n
-    ? (calculatedProcess.reduce((sum, p) => sum + (p.rt ?? 0), 0) / n).toFixed(2)
+    ? (calculatedProcess.reduce((sum, p) => sum + (p.rt ?? 0), 0) / n).toFixed(
+        2
+      )
     : 0;
 
   return (
     <div className="space-y-6">
       <ResultsTable calculatedProcess={calculatedProcess} />
+
+      {/* {ganttData.length > 0 && (
+        <div className="mt-10">
+          <h2 className="text-2xl font-bold text-center mb-4">Simulation</h2>
+          <Simulation processes={ganttData} />
+        </div>
+      )} */}
       <GanttChart gantt={ganttData} currentTime={currentTime} />
+      {/* {!isSimulating && (
+        <GanttChart gantt={ganttData} currentTime={currentTime} />
+      )} */}
+
       {/* <ReadyQueue readyQueue={readyQueue} /> */}
-      <Simulation />
+      {/* <Simulation /> */}
 
       <div className="flex flex-col items-start w-full px-5 gap-1 ml-8">
         <div className="flex flex-row gap-2">

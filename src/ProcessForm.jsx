@@ -75,38 +75,58 @@ const ProcessForm = ({
   };
 
   const handleCalculate = () => {
+    let gantt = [],
+      result = [],
+      readyQueue = [];
+
     if (algorithm == "fcfs") {
-      const { gantt, result, readyQueue } = runFCFS(process);
-      setGanttData(gantt);
-      setCalculatedProcess(result);
-      setReadyQueue(readyQueue);
+      ({ gantt, result, readyQueue } = runFCFS(process));
+      // setGanttData(gantt.map(p => ({ ...p, visible: true })));
+      // setCalculatedProcess(result);
+      // setReadyQueue(readyQueue);
     }
     if (algorithm == "sjf") {
-      const { gantt, result, readyQueue } = runSJF(process);
-      setGanttData(gantt);
-      setCalculatedProcess(result);
-      setReadyQueue(readyQueue);
+      ({ gantt, result, readyQueue } = runSJF(process));
+      // const { gantt, result, readyQueue } = runSJF(process);
+      // setGanttData(gantt.map(p => ({ ...p, visible: true })));
+      // setCalculatedProcess(result);
+      // setReadyQueue(readyQueue);
     }
     if (algorithm == "priority-non-pre") {
-      const { gantt, result, readyQueue } = runPriorityNP(process);
-      setGanttData(gantt);
-      setCalculatedProcess(result);
-      setReadyQueue(readyQueue);
+      ({ gantt, result, readyQueue } = runPriorityNP(process));
+      // const { gantt, result, readyQueue } = runPriorityNP(process);
+      // setGanttData(gantt.map(p => ({ ...p, visible: true })));
+      // setCalculatedProcess(result);
+      // setReadyQueue(readyQueue);
     }
     if (algorithm == "rr") {
-      const { gantt, result, readyQueue } = runRR(process, quantum);
-      setGanttData(gantt);
-      setCalculatedProcess(result);
-      setReadyQueue(readyQueue);
+      ({ gantt, result, readyQueue } = runRR(process));
+      // const { gantt, result, readyQueue } = runRR(process, quantum);
+      // setGanttData(gantt.map(p => ({ ...p, visible: true })));
+      // setCalculatedProcess(result);
+      // setReadyQueue(readyQueue);
     }
+
+    setGanttData(gantt.map((p) => ({ ...p, visible: false })));
+    setCalculatedProcess(result);
+    setReadyQueue(readyQueue);
 
     setReset(true);
     setIsRunning(true);
 
     setTimeout(() => {
       setReset(false);
-      setIsRunning(true);
-    }, 200);
+
+      gantt.forEach((p, i) => {
+        setTimeout(() => {
+          setGanttData((prev) =>
+            prev.map((bar, index) =>
+              index === i ? { ...bar, visible: true } : bar
+            )
+          );
+        }, i * 700);
+      });
+    }, 300);
   };
 
   return (

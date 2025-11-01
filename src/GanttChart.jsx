@@ -78,7 +78,7 @@ const GanttChart = ({ gantt = [] }) => {
             {timeline.map((p, index) => {
               const width = ((p.end - p.start) / maxTime) * 100;
               const left = (p.start / maxTime) * 100;
-              
+
               if (p.pid === "idle") {
                 return (
                   <div
@@ -94,7 +94,9 @@ const GanttChart = ({ gantt = [] }) => {
                   key={`${p.pid}-${index}`}
                   className={`absolute h-full flex items-center justify-center bg-gradient-to-r ${
                     processColors[p.pid]
-                  } border-r-2 border-white transition-all hover:opacity-90`}
+                  } border-r-2 border-white transition-all duration-700 ease-in-out ${
+                    p.visible ? "opacity-100" : "opacity-0"
+                  }`}
                   style={{
                     left: `${left}%`,
                     width: `${width}%`,
