@@ -40,10 +40,10 @@ const ProcessForm = ({
   const form = useForm({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      pid: "",
+      pid: "P1",
       pr: "",
-      at: "",
-      bt: "",
+      at: 0,
+      bt: 0,
       ct: "",
       tat: "",
       wt: "",
@@ -71,7 +71,14 @@ const ProcessForm = ({
     };
 
     setProcess([...process, newProcess]);
-    form.reset();
+
+    const nextPid = `P${process.length + 2}`;
+    form.reset({
+      pid: nextPid,
+      pr: "",
+      at: 0,
+      bt: 0,
+    });
   };
 
   const handleCalculate = () => {
@@ -144,7 +151,7 @@ const ProcessForm = ({
               <FormItem className="flex items-center gap-4">
                 <FormLabel>Arrival Time</FormLabel>
                 <FormControl>
-                  <Input type="number" placeholder="" {...field} />
+                  <Input type="number" min="0" placeholder="" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -157,7 +164,7 @@ const ProcessForm = ({
               <FormItem className="flex items-center gap-4">
                 <FormLabel>Burst Time</FormLabel>
                 <FormControl>
-                  <Input type="number" placeholder="" {...field} />
+                  <Input type="number" min="0" placeholder="" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
