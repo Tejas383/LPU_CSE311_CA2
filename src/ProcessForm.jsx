@@ -12,12 +12,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import { Plus, Play } from "lucide-react";
 import runFCFS from "./algorithms/fcfs";
 import runSJF from "./algorithms/sjf";
 import runPriorityNP from "./algorithms/priorityNP";
 import runRR from "./algorithms/rr";
-import { Play } from "lucide-react";
 
 const FormSchema = z.object({
   pid: z.string().min(2, {

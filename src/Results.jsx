@@ -1,8 +1,6 @@
 import React from "react";
 import ResultsTable from "./ResultsTable";
 import GanttChart from "./GanttChart";
-import ReadyQueue from "./readyQueue";
-import Simulation from "./Simulation";
 import Summary from "./Summary";
 
 const Results = ({
@@ -11,7 +9,7 @@ const Results = ({
   currentTime,
 }) => {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 w-full">
       <ResultsTable calculatedProcess={calculatedProcess} />
 
       <div className="flex flex-col md:flex-row gap-4">
@@ -20,7 +18,7 @@ const Results = ({
         </div>
       </div>
 
-      <Summary calculatedProcess={calculatedProcess} />
+      {/* <Summary calculatedProcess={calculatedProcess} /> */}
     </div>
   );
 };
