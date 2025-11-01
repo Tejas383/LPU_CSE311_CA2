@@ -75,7 +75,7 @@ const GanttChart = ({ gantt = [] }) => {
       <div className="space-y-4">
         {/* Timeline */}
         <div className="relative">
-          <div className="flex items-center h-16 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg overflow-hidden border border-purple-200">
+          <div className="flex items-center h-20 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg overflow-hidden border border-purple-200">
             {timeline.map((p, index) => {
               const width = ((p.end - p.start) / maxTime) * 100;
               const left = (p.start / maxTime) * 100;

@@ -35,7 +35,7 @@ const ProcessTable = ({ process, setProcess, algorithm }) => {
         </div>
       ) : (
         <div className="rounded-lg border border-purple-200 overflow-hidden">
-        <Table className="">
+        <Table className="w-full table-auto">
           <TableHeader>
             <TableRow className="bg-gradient-to-r from-blue-100 to-purple-100 ">
               <TableHead className="border border-gray-200 text-center">
@@ -54,7 +54,7 @@ const ProcessTable = ({ process, setProcess, algorithm }) => {
               </TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody>
+          <TableBody className="bg-white">
             {process.map((p, idx) => (
               <DropdownMenu
                 key={idx}

@@ -58,7 +58,7 @@ const Timer = ({ isRunning, setIsRunning, totalTime, onTick, reset }) => {
   };
 
   return (
-    <Card className="p-4 bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-xl border-0">
+    <Card className="p-6 bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-xl border-0">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
@@ -75,13 +75,13 @@ const Timer = ({ isRunning, setIsRunning, totalTime, onTick, reset }) => {
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+  <div className="flex items-center gap-3">
             {/* start/pause controls are handled elsewhere; reset button removed per UI update */}
         </div>
       </div>
 
       {isRunning && (
-        <div className="mt-3 h-1 bg-white/20 rounded-full overflow-hidden">
+        <div className="mt-4 h-1.5 bg-white/20 rounded-full overflow-hidden">
           <div
             className="h-full bg-white/60 rounded-full animate-pulse"
             style={{ width: "100%" }}

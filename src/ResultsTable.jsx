@@ -34,7 +34,7 @@ const ResultsTable = ({ calculatedProcess, algorithm }) => {
       </div>
 
       <div className="rounded-lg border border-purple-200 overflow-hidden">
-        <Table className="text-center">
+        <Table className="text-center w-full table-auto">
             <TableHeader>
               <TableRow className="bg-gradient-to-r from-blue-100 to-purple-100 text-center">
                 <TableHead className="text-center border border-gray-200">Process ID</TableHead>
@@ -49,7 +49,7 @@ const ResultsTable = ({ calculatedProcess, algorithm }) => {
                 <TableHead className="text-center border border-gray-200">Response Time</TableHead>
               </TableRow>
             </TableHeader>
-          <TableBody>
+          <TableBody className="bg-white">
             {calculatedProcess && calculatedProcess.length > 0 ? (
               calculatedProcess.map((p, idx) => (
                 <TableRow key={idx} className="hover:bg-purple-100/50 text-center">

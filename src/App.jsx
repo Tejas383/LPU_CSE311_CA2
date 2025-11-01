@@ -4,7 +4,6 @@ import Results from "./Results";
 import Process from "./Process";
 import Timer from "./Timer";
 import ComparativeAnalysis from "./ComparativeAnalysis";
-import Simulation from "./Simulation";
 
 function App() {
   const [process, setProcess] = useState([]);
@@ -37,8 +36,8 @@ function App() {
         </div>
       </header>
 
-      <main className="container mx-auto px-6 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <main className="container mx-auto px-8 py-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="space-y-6">
             <Process
               process={process}
