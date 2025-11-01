@@ -4,6 +4,7 @@ import Results from "./Results";
 import Process from "./Process";
 import Timer from "./Timer";
 import ComparativeAnalysis from "./ComparativeAnalysis";
+import Summary from "./Summary";
 
 function App() {
   const [process, setProcess] = useState([]);
@@ -53,9 +54,10 @@ function App() {
               setReset={setReset}
               isRunning={isRunning}
             />
+            <Summary calculatedProcess={calculatedProcess} />
           </div>
 
-          <div className="flex flex-col items-center justify-center flex-1 gap-1">
+          <div className="flex flex-col items-center justify-center flex-1 gap-8">
             <Timer
               isRunning={isRunning}
               onTick={setCurrentTime}
