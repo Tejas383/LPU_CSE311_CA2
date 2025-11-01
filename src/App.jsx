@@ -3,6 +3,8 @@ import "./App.css";
 import Results from "./Results";
 import Process from "./Process";
 import Timer from "./Timer";
+import ComparativeAnalysis from "./ComparativeAnalysis";
+import Simulation from "./Simulation";
 
 function App() {
   const [process, setProcess] = useState([]);
