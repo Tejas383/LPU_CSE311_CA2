@@ -194,7 +194,7 @@ const ProcessForm = ({
           <div className="flex gap-3">
             <Button
               type="submit"
-              className="text-white flex-1 py-2 rounded-md bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
+              className="text-white flex-1 py-2 rounded-md bg-gradient-to-br from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
             >
               <Plus className="w-4 h-4 mr-2" />
               Add

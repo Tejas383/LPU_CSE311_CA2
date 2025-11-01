@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Card } from "./components/ui/card";
-import { Button } from "./components/ui/button";
 import { Clock } from "lucide-react";
 
 const Timer = ({ isRunning, setIsRunning, totalTime, onTick, reset }) => {
@@ -47,10 +46,6 @@ const Timer = ({ isRunning, setIsRunning, totalTime, onTick, reset }) => {
     return () => clearTimer();
   }, [isRunning, totalTime, onTick, setIsRunning]);
 
-  // const handleStart = () => setIsRunning(true);
-  // const handlePause = () => setIsRunning(false);
-  // reset handled via external `reset` prop (and Start/Pause is controlled elsewhere)
-
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
@@ -58,36 +53,41 @@ const Timer = ({ isRunning, setIsRunning, totalTime, onTick, reset }) => {
   };
 
   return (
-    <Card className="p-6 bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-xl border-0">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
-            <Clock className="w-5 h-5" />
-          </div>
-          <div>
-            <p className="text-xs opacity-80">Simulation Time</p>
-            <div className="flex items-baseline gap-1">
-              <span className="text-3xl font-mono tabular-nums tracking-tight">
-                {formatTime(time)}
-              </span>
-              <span className="text-sm opacity-80">s</span>
-            </div>
-          </div>
+    <Card className="p-6 bg-gradient-to-br from-blue-500 to-purple-600 text-white shadow-2xl border-0 w-full flex flex-col items-center justify-center rounded-2xl transition-all duration-300 hover:scale-[1.01]">
+      <div className="flex items-center gap-3 mb-2">
+        <div className="p-3 bg-white/20 rounded-xl backdrop-blur-sm shadow-inner">
+          <Clock className="w-6 h-6 text-white/90" />
         </div>
-
-  <div className="flex items-center gap-3">
-            {/* start/pause controls are handled elsewhere; reset button removed per UI update */}
+        <div className="text-left">
+          <p className="text-xs uppercase tracking-wide text-white/70">
+            Simulation Time
+          </p>
+          <span className="text-4xl font-bold font-mono tracking-tight">
+            {formatTime(time)}
+          </span>
+          <span className="text-sm opacity-80 ml-1">s</span>
         </div>
       </div>
 
-      {isRunning && (
-        <div className="mt-4 h-1.5 bg-white/20 rounded-full overflow-hidden">
-          <div
-            className="h-full bg-white/60 rounded-full animate-pulse"
-            style={{ width: "100%" }}
-          />
-        </div>
-      )}
+      {/* Progress bar */}
+      <div className="w-full mt-4 h-2 bg-white/15 rounded-full overflow-hidden">
+        <div
+          className={`h-full rounded-full transition-all duration-500 ${
+            isRunning ? "bg-white/70 animate-pulse" : "bg-white/40"
+          }`}
+          style={{
+            width:
+              totalTime && totalTime > 0
+                ? `${Math.min((time / totalTime) * 100, 100)}%`
+                : "0%",
+          }}
+        />
+      </div>
+
+      {/* Status indicator */}
+      <div className="mt-3 text-xs uppercase tracking-wider text-white/60">
+        {isRunning ? "Running..." : reset ? "Reset" : "Paused"}
+      </div>
     </Card>
   );
 };

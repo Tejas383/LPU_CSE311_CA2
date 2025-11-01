@@ -82,8 +82,8 @@ const ComparativeAnalysis = ({ process, quantum }) => {
           </TableHeader>
 
           <TableBody>
-            {data && data.length > 0 ? (
-              data.map((p, idx) => (
+            {copy && copy.length > 0 ? (
+              copy.map((p, idx) => (
                 <TableRow
                   key={idx}
                   className={`border-b border-purple-100 hover:bg-purple-50/50 transition-colors ${

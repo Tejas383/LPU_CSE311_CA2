@@ -36,7 +36,7 @@ function App() {
         </div>
       </header>
 
-      <main className="container mx-auto px-8 py-10">
+      <main className="container grid mx-auto px-8 py-10 gap-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="space-y-6">
             <Process
