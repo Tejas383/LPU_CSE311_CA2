@@ -82,9 +82,21 @@ const GanttChart = ({ gantt = [] }) => {
               if (p.pid === "idle") {
                 return (
                   <div
-                    key={index}
-                    className="absolute h-full bg-gray-200/40 border-r border-white"
-                    style={{ left: `${left}%`, width: `${width}%` }}
+                    key={`idle-${index}`}
+                    className={`absolute h-full border-r border-gray-300 transition-all duration-700 ease-in-out ${
+                      p.visible ? "opacity-100" : "opacity-0"
+                    }`}
+                    style={{
+                      left: `${left}%`,
+                      width: `${width}%`,
+                      backgroundImage: `repeating-linear-gradient(
+                        45deg,
+                        #d1d5db 0,
+                        #d1d5db 8px,
+                        #e5e7eb 8px,
+                        #e5e7eb 16px
+                      )`,
+                    }}
                   />
                 );
               }

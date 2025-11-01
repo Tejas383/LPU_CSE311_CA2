@@ -36,6 +36,7 @@ const ProcessForm = ({
   setReadyQueue,
   setIsRunning,
   setReset,
+  isRunning,
 }) => {
   const form = useForm({
     resolver: zodResolver(FormSchema),
@@ -81,50 +82,38 @@ const ProcessForm = ({
 
     if (algorithm == "fcfs") {
       ({ gantt, result, readyQueue } = runFCFS(process));
-      // setGanttData(gantt.map(p => ({ ...p, visible: true })));
-      // setCalculatedProcess(result);
-      // setReadyQueue(readyQueue);
     }
     if (algorithm == "sjf") {
       ({ gantt, result, readyQueue } = runSJF(process));
-      // const { gantt, result, readyQueue } = runSJF(process);
-      // setGanttData(gantt.map(p => ({ ...p, visible: true })));
-      // setCalculatedProcess(result);
-      // setReadyQueue(readyQueue);
     }
     if (algorithm == "priority-non-pre") {
       ({ gantt, result, readyQueue } = runPriorityNP(process));
-      // const { gantt, result, readyQueue } = runPriorityNP(process);
-      // setGanttData(gantt.map(p => ({ ...p, visible: true })));
-      // setCalculatedProcess(result);
-      // setReadyQueue(readyQueue);
     }
     if (algorithm == "rr") {
       ({ gantt, result, readyQueue } = runRR(process));
-      // const { gantt, result, readyQueue } = runRR(process, quantum);
-      // setGanttData(gantt.map(p => ({ ...p, visible: true })));
-      // setCalculatedProcess(result);
-      // setReadyQueue(readyQueue);
     }
 
     setGanttData(gantt.map((p) => ({ ...p, visible: false })));
     setCalculatedProcess(result);
     setReadyQueue(readyQueue);
 
+    // Reset timer first
     setReset(true);
-    setIsRunning(true);
+    setIsRunning(false);
 
     setTimeout(() => {
       setReset(false);
+      setIsRunning(true);
 
-      gantt.forEach((p, i) => {
+      // Animate gantt bars based on their actual start time (1000ms per time unit)
+      gantt.forEach((bar, index) => {
         setTimeout(() => {
           setGanttData((prev) =>
-            prev.map((bar, index) =>
-              index === i ? { ...bar, visible: true } : bar
+            prev.map((b, i) =>
+              i === index ? { ...b, visible: true } : b
             )
           );
-        }, i * 700);
+        }, bar.start * 1000);
       });
     }, 300);
   };
@@ -213,7 +202,7 @@ const ProcessForm = ({
             </Button>
             <Button
               onClick={handleCalculate}
-              disabled={!algorithm}
+              disabled={!algorithm || isRunning}
               className="text-white flex-1 bg-gradient-to-r bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
             >
               <Play className="w-4 h-4 mr-2" />

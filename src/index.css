@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .idle-stripes {
+    background-image: repeating-linear-gradient(
+      45deg,
+      #e5e7eb 0,
+      #e5e7eb 10px,
+      #f3f4f6 10px,
+      #f3f4f6 20px
+    );
+  }
+}

@@ -58,6 +58,7 @@ function App() {
               setQuantum={setQuantum}
               setIsRunning={setIsRunning}
               setReset={setReset}
+              isRunning={isRunning}
             />
           </div>
 
@@ -67,6 +68,7 @@ function App() {
               onTick={setCurrentTime}
               totalTime={totalTime}
               setIsRunning={setIsRunning}
+              reset={reset}
             />
 
             <Results

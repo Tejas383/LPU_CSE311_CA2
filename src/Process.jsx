@@ -16,6 +16,7 @@ const Process = ({
   setQuantum,
   setIsRunning,
   setReset,
+  isRunning,
 }) => {
   return (
     <div className="flex flex-col gap-6">
@@ -32,6 +33,7 @@ const Process = ({
           setReadyQueue={setReadyQueue}
           setIsRunning={setIsRunning}
           setReset={setReset}
+          isRunning={isRunning}
         />
       </Card>
       <ProcessTable process={process} setProcess={setProcess} algorithm={algorithm} />
