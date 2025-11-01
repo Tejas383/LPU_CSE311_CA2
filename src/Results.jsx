@@ -10,9 +10,7 @@ const Results = ({
   ganttData,
   readyQueue,
   currentTime,
-  isSimulating,
 }) => {
-
   return (
     <div className="space-y-6">
       <ResultsTable calculatedProcess={calculatedProcess} />

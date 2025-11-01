@@ -3,8 +3,6 @@ import "./App.css";
 import Results from "./Results";
 import Process from "./Process";
 import Timer from "./Timer";
-import ComparativeAnalysis from "./ComparativeAnalysis";
-import Simulation from "./Simulation";
 
 function App() {
   const [process, setProcess] = useState([]);
@@ -17,7 +15,6 @@ function App() {
   const [currentTime, setCurrentTime] = useState(0);
   const [totalTime, setTotalTime] = useState(0);
   const [reset, setReset] = useState(false);
-  const [isSimulating, setIsSimulating] = useState(false);
 
   useEffect(() => {
     if (ganttData.length > 0) {
@@ -72,7 +69,6 @@ function App() {
               readyQueue={readyQueue}
               currentTime={currentTime}
               reset={reset}
-              isSimulating={isSimulating}
             />
           </div>
         </div>
