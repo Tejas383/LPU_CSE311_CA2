@@ -26,11 +26,6 @@ function App() {
     }
   }, [ganttData]);
 
-  const handleSimulate = () => {
-    if (ganttData.length === 0) return alert("Please calculate first!");
-    setIsSimulating(true);
-  };
-
   return (
     <div className="App min-h-screen bg-gradient-to-br from-blue-300 via-purple-100 to-pink-300">
       <header className="bg-white/80 backdrop-blur-sm border-b border-purple-100 sticky top-0 z-10">
@@ -82,9 +77,9 @@ function App() {
           </div>
         </div>
 
-        {/* <div className="bg-green-200 h-full w-full">
+        <div className="h-full w-full">
           <ComparativeAnalysis process={process} quantum={quantum} />
-        </div> */}
+        </div>
       </main>
 
       <footer className="mt-16 py-6 text-center text-gray-600 border-t border-purple-100 bg-white/50">
