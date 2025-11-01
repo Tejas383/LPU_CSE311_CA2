@@ -17,8 +17,6 @@ const Results = ({
           <GanttChart gantt={ganttData} currentTime={currentTime} />
         </div>
       </div>
-
-      {/* <Summary calculatedProcess={calculatedProcess} /> */}
     </div>
   );
 };

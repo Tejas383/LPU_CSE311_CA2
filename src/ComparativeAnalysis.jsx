@@ -12,7 +12,7 @@ import { Badge } from "./components/ui/badge";
 import runFCFS from "./algorithms/fcfs";
 import runSJF from "./algorithms/sjf";
 import runPriorityNP from "./algorithms/priorityNP";
-import runRR from "./algorithms/rr";
+// import runRR from "./algorithms/rr";
 import { BarChart2, Award } from "lucide-react";
 
 const ComparativeAnalysis = ({ process, quantum }) => {
@@ -21,7 +21,7 @@ const ComparativeAnalysis = ({ process, quantum }) => {
   const fcfs = runFCFS(copy).result;
   const sjf = runSJF(copy).result;
   const priorityNP = runPriorityNP(copy).result;
-  const rr = runRR(copy, quantum).result;
+  // const rr = runRR(copy, quantum).result;
 
   const calculateAverages = (processList) => {
     const n = processList.length;
@@ -46,7 +46,7 @@ const ComparativeAnalysis = ({ process, quantum }) => {
     { name: "First Come First Serve", ...calculateAverages(fcfs) },
     { name: "Shortest Job First", ...calculateAverages(sjf) },
     { name: "Priority Non-Preemptive", ...calculateAverages(priorityNP) },
-    { name: `Round Robin (Q=${quantum})`, ...calculateAverages(rr) },
+    // { name: `Round Robin (Q=${quantum})`, ...calculateAverages(rr) },
   ];
 
   const bestTAT = Math.min(...data.map((d) => parseFloat(d.tat)));

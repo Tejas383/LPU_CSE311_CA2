@@ -16,7 +16,7 @@ import { Plus, Play } from "lucide-react";
 import runFCFS from "./algorithms/fcfs";
 import runSJF from "./algorithms/sjf";
 import runPriorityNP from "./algorithms/priorityNP";
-import runRR from "./algorithms/rr";
+// import runRR from "./algorithms/rr";
 
 const FormSchema = z.object({
   pid: z.string().min(2, {
@@ -94,9 +94,9 @@ const ProcessForm = ({
     if (algorithm == "priority-non-pre") {
       ({ gantt, result, readyQueue } = runPriorityNP(process));
     }
-    if (algorithm == "rr") {
-      ({ gantt, result, readyQueue } = runRR(process));
-    }
+    // if (algorithm == "rr") {
+    //   ({ gantt, result, readyQueue } = runRR(process));
+    // }
 
     setGanttData(gantt.map((p) => ({ ...p, visible: false })));
     setCalculatedProcess(result);

@@ -14,6 +14,9 @@ export default function runRR(processes, quantum) {
     firstResponse: null,
   }));
 
+  if (remaining.length === 0) return { gantt: [], result: [], readyQueue: [] };
+
+  time = remaining[0].at;
   readyQueue.push(remaining[0]);
 
   while (remaining.some((p) => p.remainingBT > 0)) {
@@ -49,19 +52,23 @@ export default function runRR(processes, quantum) {
         p.remainingBT > 0 &&
         p.at <= time &&
         !readyQueue.includes(p) &&
-        p != current
-      )
+        p.pid !== current.pid
+      ) {
         readyQueue.push(p);
+      }
     }
+
+    let target = remaining.find((p) => p.pid === current.pid);
+
 
     if (current.remainingBT > 0) {
       readyQueue.push(current);
     } else {
-      current.ct = time;
-      current.tat = current.ct - current.at;
-      current.wt = current.tat - current.bt;
-      current.rt = current.firstResponse - current.at;
-      result.push(current);
+      target.ct = time;
+      target.tat = target.ct - target.at;
+      target.wt = target.tat - target.bt;
+      target.rt = target.firstResponse - target.at;
+      result.push(target);
     }
   }
   return { gantt, result, readyQueue };
