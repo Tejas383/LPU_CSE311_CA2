@@ -48,7 +48,7 @@ const Summary = ({ calculatedProcess }) => {
         <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4">
           <div className="flex items-center gap-2 mb-2">
             <TrendingUp className="w-4 h-4" />
-            <p className="text-sm opacity-90">Total Completion Time</p>
+            <p className="text-sm opacity-90">Average Response Time</p>
           </div>
           <p className="text-2xl">{averageRT}</p>
         </div>
