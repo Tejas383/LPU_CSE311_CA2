@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Card } from "./components/ui/card";
 import { Button } from "./components/ui/button";
-import { Play, Pause, RotateCcw, Clock } from "lucide-react";
+import { Clock } from "lucide-react";
 
 const Timer = ({ isRunning, setIsRunning, totalTime, onTick, reset }) => {
   const [time, setTime] = useState(0);
@@ -21,7 +21,7 @@ const Timer = ({ isRunning, setIsRunning, totalTime, onTick, reset }) => {
       setTime(0);
       onTick?.(0);
     }
-  }, [reset]);
+  }, [reset, onTick]);
 
   // handle start/pause
   useEffect(() => {
@@ -45,16 +45,11 @@ const Timer = ({ isRunning, setIsRunning, totalTime, onTick, reset }) => {
     }
 
     return () => clearTimer();
-  }, [isRunning, totalTime]);
+  }, [isRunning, totalTime, onTick, setIsRunning]);
 
   // const handleStart = () => setIsRunning(true);
   // const handlePause = () => setIsRunning(false);
-  const handleReset = () => {
-    clearTimer();
-    setTime(0);
-    setIsRunning(false);
-    onTick?.(0);
-  };
+  // reset handled via external `reset` prop (and Start/Pause is controlled elsewhere)
 
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
@@ -81,33 +76,7 @@ const Timer = ({ isRunning, setIsRunning, totalTime, onTick, reset }) => {
         </div>
 
         <div className="flex items-center gap-2">
-          {/* {!isRunning ? (
-            <Button
-              onClick={handleStart}
-              size="sm"
-              className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border-0 text-white h-9 px-3"
-            >
-              <Play className="w-4 h-4 mr-1" />
-              Start
-            </Button>
-          ) : (
-            <Button
-              onClick={handlePause}
-              size="sm"
-              className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border-0 text-white h-9 px-3"
-            >
-              <Pause className="w-4 h-4 mr-1" />
-              Pause
-            </Button>
-          )} */}
-          <Button
-            onClick={handleReset}
-            size="sm"
-            variant="outline"
-            className="bg-white/10 hover:bg-white/20 backdrop-blur-sm border-white/30 text-white h-9 px-3"
-          >
-            <RotateCcw className="w-4 h-4" />
-          </Button>
+            {/* start/pause controls are handled elsewhere; reset button removed per UI update */}
         </div>
       </div>
 

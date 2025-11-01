@@ -38,18 +38,18 @@ const ProcessTable = ({ process, setProcess, algorithm }) => {
         <Table className="">
           <TableHeader>
             <TableRow className="bg-gradient-to-r from-blue-100 to-purple-100 ">
-              <TableHead className="border border-white text-center">
+              <TableHead className="border border-gray-200 text-center">
                 Process ID
               </TableHead>
               {algorithm === "priority-non-pre" && (
-                <TableHead className="border border-white text-center">
+                <TableHead className="border border-gray-200 text-center">
                 Priority
               </TableHead>
               )}
-              <TableHead className="border border-white text-center">
+              <TableHead className="border border-gray-200 text-center">
                 Arrival Time
               </TableHead>
-              <TableHead className="border border-white text-center">
+              <TableHead className="border border-gray-200 text-center">
                 Burst Time
               </TableHead>
             </TableRow>
@@ -66,23 +66,23 @@ const ProcessTable = ({ process, setProcess, algorithm }) => {
                     className="cursor-pointer hover:bg-purple-100/50 text-center"
                     onClick={() => setOpenRow(idx)}
                   >
-                    <TableCell className="border border-white">
+                    <TableCell className="border border-gray-200">
                       {p.pid}
                     </TableCell>
                     {algorithm === "priority-non-pre" && (
-                      <TableCell className="border border-white">
+                      <TableCell className="border border-gray-200">
                       {p.pr}
                     </TableCell>
                     )}
-                    <TableCell className="border border-white">
+                    <TableCell className="border border-gray-200">
                       {p.at}
                     </TableCell>
-                    <TableCell className="border border-white">
+                    <TableCell className="border border-gray-200">
                       {p.bt}
                     </TableCell>
                   </TableRow>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent>
+                <DropdownMenuContent className="bg-white shadow-lg rounded-md">
                   <DropdownMenuItem onClick={() => handleDeleteEvent(idx)}>
                     Delete
                   </DropdownMenuItem>

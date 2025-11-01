@@ -14,7 +14,7 @@ const AlgorithmSelector = ({ setAlgorithm }) => {
     <div className="">
       <h2 className="mb-4 text-purple-900">Select Scheduling Algorithm</h2>
       <Select onValueChange={setAlgorithm} className="">
-        <SelectTrigger className="w-full bg-white border-purple-200 focus:ring-purple-500">
+        <SelectTrigger className="w-full bg-transparent border border-gray-200 shadow-none focus:ring-0 focus:border-purple-500">
           <SelectValue placeholder="Select algorithm" />
         </SelectTrigger>
         <SelectContent>

@@ -42,7 +42,8 @@ const GanttChart = ({ gantt = [] }) => {
 
   const processColors = {};
   // assign each pid a distinct color
-  const uniquePIDs = [...new Set(sorted.map((p) => p.pid))];
+  // exclude the synthetic "idle" pid from colored assignments
+  const uniquePIDs = [...new Set(sorted.map((p) => p.pid).filter((pid) => pid !== "idle"))];
   uniquePIDs.forEach((pid, index) => {
     processColors[pid] = colors[index % colors.length];
   });
@@ -146,7 +147,7 @@ const GanttChart = ({ gantt = [] }) => {
         </div>
 
         {/* Legend */}
-        <div className="flex flex-wrap gap-3 pt-2">
+        <div className="flex flex-wrap gap-3 pt-2 items-center">
           {uniquePIDs.map((pid, index) => (
             <div key={`legend-${index}`} className="flex items-center gap-2">
               <div
@@ -155,6 +156,17 @@ const GanttChart = ({ gantt = [] }) => {
               <span className="text-sm text-gray-700">{pid}</span>
             </div>
           ))}
+
+          {/* Idle legend (striped) */}
+          <div className="flex items-center gap-2">
+            <div
+              className="w-4 h-4 rounded border border-gray-300"
+              style={{
+                backgroundImage: `repeating-linear-gradient(45deg, #d1d5db 0, #d1d5db 8px, #e5e7eb 8px, #e5e7eb 16px)`,
+              }}
+            />
+            <span className="text-sm text-gray-700">Idle</span>
+          </div>
         </div>
       </div>
     </Card>

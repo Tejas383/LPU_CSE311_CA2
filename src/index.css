@@ -13,3 +13,8 @@
     );
   }
 }
+
+div [data-state="open"] {
+background-color: var(--background) !important;;
+
+}
