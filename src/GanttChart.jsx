@@ -8,7 +8,7 @@ import { Card } from "./components/ui/card";
  *  - currentTime: number (seconds / time units)
  *  - pxPerUnit: optional number (pixels per time unit), default 40
  */
-const GanttChart = ({ gantt = [] }) => {
+const GanttChart = ({ gantt = [], currentTime = 0 }) => {
   if (!Array.isArray(gantt) || gantt.length === 0) {
     return (
       <Card className="p-6 bg-white/90 backdrop-blur-sm shadow-xl border-purple-100">
@@ -42,28 +42,16 @@ const GanttChart = ({ gantt = [] }) => {
 
   const processColors = {};
   // assign each pid a distinct color
-  // exclude the synthetic "idle" pid from colored assignments
-  const uniquePIDs = [...new Set(sorted.map((p) => p.pid).filter((pid) => pid !== "idle"))];
+  // exclude the synthetic "idle" pid and empty pid from colored assignments
+  const uniquePIDs = [...new Set(
+    sorted.map((p) => p.pid).filter((pid) => pid !== "idle" && pid !== "" && pid != null)
+  )];
   uniquePIDs.forEach((pid, index) => {
     processColors[pid] = colors[index % colors.length];
   });
 
-  // Merge idle gaps (empty spaces) into timeline
-  const timeline = [];
-  for (let i = 0; i < sorted.length; i++) {
-    const curr = sorted[i];
-    const next = sorted[i + 1];
-    timeline.push(curr);
-
-    // if next process starts later than current end -> idle gap
-    if (next && next.start > curr.end) {
-      timeline.push({
-        pid: "idle",
-        start: curr.end,
-        end: next.start,
-      });
-    }
-  }
+  // Use sorted gantt as timeline. Algorithm outputs already include idle segments as empty pid entries.
+  const timeline = sorted;
 
   return (
     <Card className="p-6 bg-white/90 backdrop-blur-sm shadow-xl border-purple-100">
@@ -80,23 +68,18 @@ const GanttChart = ({ gantt = [] }) => {
               const width = ((p.end - p.start) / maxTime) * 100;
               const left = (p.start / maxTime) * 100;
 
-              if (p.pid === "idle") {
+              // treat empty pid or explicit "idle" as idle segment
+              if (!p.pid || p.pid === "idle") {
                 return (
                   <div
                     key={`idle-${index}`}
                     className={`absolute h-full border-r border-gray-300 transition-all duration-700 ease-in-out ${
-                      p.visible ? "opacity-100" : "opacity-0"
+                      (p.visible || currentTime >= p.start) ? "opacity-100" : "opacity-0"
                     }`}
                     style={{
                       left: `${left}%`,
                       width: `${width}%`,
-                      backgroundImage: `repeating-linear-gradient(
-                        45deg,
-                        #d1d5db 0,
-                        #d1d5db 8px,
-                        #e5e7eb 8px,
-                        #e5e7eb 16px
-                      )`,
+                      backgroundImage: `repeating-linear-gradient(45deg, #d1d5db 0, #d1d5db 8px, #e5e7eb 8px, #e5e7eb 16px)`,
                     }}
                   />
                 );
@@ -105,10 +88,8 @@ const GanttChart = ({ gantt = [] }) => {
               return (
                 <div
                   key={`${p.pid}-${index}`}
-                  className={`absolute h-full flex items-center justify-center bg-gradient-to-r ${
-                    processColors[p.pid]
-                  } border-r-2 border-white transition-all duration-700 ease-in-out ${
-                    p.visible ? "opacity-100" : "opacity-0"
+                  className={`absolute h-full flex items-center justify-center bg-gradient-to-r ${processColors[p.pid]} border-r-2 border-white transition-all duration-700 ease-in-out ${
+                    (p.visible || currentTime >= p.start) ? "opacity-100" : "opacity-0"
                   }`}
                   style={{
                     left: `${left}%`,
