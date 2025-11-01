@@ -82,13 +82,6 @@ function App() {
           </div>
         </div>
 
-        {/* {ganttData.length > 0 && (
-          <div className="mt-10">
-            <h2 className="text-2xl font-bold text-center mb-4">Simulation</h2>
-            <Simulation processes={ganttData} />
-          </div>
-        )} */}
-
         {/* <div className="bg-green-200 h-full w-full">
           <ComparativeAnalysis process={process} quantum={quantum} />
         </div> */}
